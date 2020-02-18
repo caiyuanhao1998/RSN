@@ -48,7 +48,7 @@ In this work, we propose a novel network structure called Residual Steps Network
 ## Repo Structure
 This repo is organized as following:
 ```
-$MSPN_HOME
+$RSN_HOME
 |-- cvpack
 |
 |-- dataset
@@ -85,10 +85,10 @@ $MSPN_HOME
 
 1. Install Pytorch referring to [Pytorch website][2].
 
-2. Clone this repo, and config **MSPN_HOME** in **/etc/profile** or **~/.bashrc**, e.g.
+2. Clone this repo, and config **RSN_HOME** in **/etc/profile** or **~/.bashrc**, e.g.
  ```
- export MSPN_HOME='/path/of/your/cloned/repo'
- export PYTHONPATH=$PYTHONPATH:$MSPN_HOME
+ export RSN_HOME='/path/of/your/cloned/repo'
+ export PYTHONPATH=$PYTHONPATH:$RSN_HOME
  ```
 
 3. Install requirements:
@@ -98,8 +98,8 @@ $MSPN_HOME
 
 4. Install COCOAPI referring to [cocoapi website][3], or:
  ```
- git clone https://github.com/cocodataset/cocoapi.git $MSPN_HOME/lib/COCOAPI
- cd $MSPN_HOME/lib/COCOAPI/PythonAPI
+ git clone https://github.com/cocodataset/cocoapi.git $RSN_HOME/lib/COCOAPI
+ cd $RSN_HOME/lib/COCOAPI/PythonAPI
  make install
  ```
  
@@ -107,33 +107,33 @@ $MSPN_HOME
 
 #### COCO
 
-1. Download images from [COCO website][4], and put train2014/val2014 splits into **$MSPN_HOME/dataset/COCO/images/** respectively.
+1. Download images from [COCO website][4], and put train2014/val2014 splits into **$RSN_HOME/dataset/COCO/images/** respectively.
 
-2. Download ground truth from [Google Drive][6], and put it into **$MSPN_HOME/dataset/COCO/gt_json/**.
+2. Download ground truth from [Google Drive][6], and put it into **$RSN_HOME/dataset/COCO/gt_json/**.
 
-3. Download detection result from [Google Drive][6], and put it into **$MSPN_HOME/dataset/COCO/det_json/**.
+3. Download detection result from [Google Drive][6], and put it into **$RSN_HOME/dataset/COCO/det_json/**.
 
 #### MPII
 
-1. Download images from [MPII website][5], and put images into **$MSPN_HOME/dataset/MPII/images/**.
+1. Download images from [MPII website][5], and put images into **$RSN_HOME/dataset/MPII/images/**.
 
-2. Download ground truth from [Google Drive][6], and put it into **$MSPN_HOME/dataset/MPII/gt_json/**.
+2. Download ground truth from [Google Drive][6], and put it into **$RSN_HOME/dataset/MPII/gt_json/**.
 
-3. Download detection result from [Google Drive][6], and put it into **$MSPN_HOME/dataset/MPII/det_json/**.
+3. Download detection result from [Google Drive][6], and put it into **$RSN_HOME/dataset/MPII/det_json/**.
 
 ### Model
-Download ImageNet pretained ResNet-50 model from [Google Drive][6], and put it into **$MSPN_HOME/lib/models/**. For your convenience, We also provide a well-trained 2-stage MSPN model for COCO.
+Download ImageNet pretained ResNet-50 model from [Google Drive][6], and put it into **$RSN_HOME/lib/models/**. For your convenience, We also provide a well-trained 2-stage RSN model for COCO.
 
 ### Log
 Create a directory to save logs and models:
 ```
-mkdir $MSPN_HOME/model_logs
+mkdir $RSN_HOME/model_logs
 ```
 
 ### Train
 Go to specified experiment repository, e.g.
 ```
-cd $MSPN_HOME/exps/mspn.2xstg.coco
+cd $RSN_HOME/exps/rsn.2xstg.coco
 ```
 and run:
 ```
@@ -169,7 +169,7 @@ Please considering citing our projects in your publications if they help your re
 And the [code][7] of [Cascaded Pyramid Network][8] is also available. 
 
 ## Contact
-You can contact us by email published in our [paper][1] or fenglinglwb@gmail.com.
+You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 
 [1]: https://arxiv.org/abs/1901.00148
 [2]: https://pytorch.org/
