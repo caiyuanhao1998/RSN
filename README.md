@@ -5,7 +5,7 @@ This is a pytorch realization of RSN proposed in [ Residual Steps Network for Mu
 
 In this work, we propose a novel network structure called Residual Steps Network (RSN) aiming to aggregate features inside each level (we define consecutive feature maps with the same spatial size as one level) of the network. RSN fuses the intra-level features to obtain better low-level delicate spatial information resulting in more precise keypoint localization. The proposed method outperforms the winner of COCO Keypoint Challenge 2018 and achieves state-of-the-art results on both COCO and MPII benchmarks, without using extra training data andpretrained model. Our single model achieves 78.6 on COCO test-dev, 93.0 on MPII test dataset. Ensembled models achieve 79.2 on COCO test-dev, 77.1 on COCO test-challenge. The source code is publicly available for further research.
 
-![Overview of RSN.](/figures/RSN.png)
+![Overview of RSN.](/figures/pipeline_v2.pdf)
 
 
 ## Results
