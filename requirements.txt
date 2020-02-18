@@ -1,0 +1,7 @@
+ninja
+yacs
+cython
+matplotlib
+tqdm
+coloredlogs
+tensorboardX
