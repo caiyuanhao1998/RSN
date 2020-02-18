@@ -7,16 +7,10 @@ In this work, we propose a novel network structure called Residual Steps Network
 
 ![Overview of RSN.](/figures/pipeline_v2.png)
 
-                                                   (a) pipeline of Multi-stage Residual Steps Network
-
 ![Prediction Results of COCO-valid.](/figures/results.png)
 
-                                                   (b) Some prediction results of COCO-valid dataset
-                                                   
 ![Prediction Results of MPII-valid.](/figures/results_mpii.png)
 
-                                                   (c) Some prediction results of MPII-valid dataset
-                                                   
 
 ## Results
 
