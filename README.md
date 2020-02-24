@@ -1,7 +1,7 @@
 # Residual Steps Network for Multi-Person Pose Estimation
 
 ## Introduction
-This is a pytorch realization of Residual Steps Network which wins 2019 COCO Keypoints Challenge. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
+This is a pytorch realization of Residual Steps Network which wins 2019 COCO Keypoints Challenge and ranks 1st place on both COCO test-dev and test-challenge dataset as shown in [COCO leaderboard][1]. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
 
 In this paper, we propose a novel network structure called Residual Steps Network (RSN) aiming to aggregate features inside each
 level (we define consecutive feature maps with the same spatial size as one level) of the network. RSN fuses the intra-level features to obtain better low-level delicate spatial information resulting in more precise keypoint localization. The proposed method outperforms the winner of COCO Keypoint Challenge 2018 and achieves state-of-the-art results on both COCO and MPII benchmarks, **without using extra training data and pretrained model**. Our single model achieves 78.6 on COCO test-dev, 93.0 on MPII test dataset. Ensembled models achieve 79.2 on COCO test-dev, 77.1 on COCO test-challenge. The source code is publicly available for further research.
@@ -173,7 +173,7 @@ And the [code][7] of [Cascaded Pyramid Network][8] is also available.
 ## Contact
 You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 
-[1]: https://arxiv.org/abs/1901.00148
+[1]: http://cocodataset.org/
 [2]: https://pytorch.org/
 [3]: https://github.com/cocodataset/cocoapi
 [4]: http://cocodataset.org/#download
