@@ -10,7 +10,7 @@ level (we define consecutive feature maps with the same spatial size as one leve
 ![Overview of RSN.](/figures/pipeline_v2.png)
 
 
-## Visualization of COCO and MPII valid datasets
+## Some prediction resullts of our method on COCO and MPII valid datasets
 ![Prediction Results of COCO-valid.](/figures/results.png)
 
 ![Prediction Results of MPII-valid.](/figures/results_mpii.png)
