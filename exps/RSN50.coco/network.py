@@ -1,6 +1,6 @@
 """
-@author: Wenbo Li
-@contact: fenglinglwb@gmail.com
+@author: Yuanhao Cai
+@date:  2020.03
 """
 
 import torch
@@ -52,22 +52,66 @@ class Bottleneck(nn.Module):
     def __init__(self, in_planes, planes, stride=1, downsample=None,
             efficient=False):
         super(Bottleneck, self).__init__()
-        self.conv_bn_relu1 = conv_bn_relu(in_planes, planes, kernel_size=1,
-                stride=1, padding=0, has_bn=True, has_relu=True,
+        self.branch_ch = in_planes*26//64
+        self.conv_bn_relu1 = conv_bn_relu(in_planes, 4*self.branch_ch, kernel_size=1,
+                stride=stride, padding=0, has_bn=True, has_relu=True,
                 efficient=efficient) 
-        self.conv_bn_relu2 = conv_bn_relu(planes, planes, kernel_size=3,
-                stride=stride, padding=1, has_bn=True, has_relu=True,
-                efficient=efficient) 
-        self.conv_bn_relu3 = conv_bn_relu(planes, planes * self.expansion,
+
+        self.conv_bn_relu2_1_1 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_2_1 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_2_2 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_3_1 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_3_2 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_3_3 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_4_1 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_4_2 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_4_3 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+        self.conv_bn_relu2_4_4 = conv_bn_relu(self.branch_ch, self.branch_ch, kernel_size=3,
+                stride=1, padding=1, has_bn=True, has_relu=True,
+                efficient=efficient)
+
+        self.conv_bn_relu3 = conv_bn_relu(4*self.branch_ch, planes * self.expansion,
                 kernel_size=1, stride=1, padding=0, has_bn=True,
                 has_relu=False, efficient=efficient) 
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
+        
 
     def forward(self, x):
         out = self.conv_bn_relu1(x)
-        out = self.conv_bn_relu2(out)
+        spx = torch.split(out, self.branch_ch, 1)
+        out_1_1 = self.conv_bn_relu2_1_1(spx[0])
+        out_2_1 = self.conv_bn_relu2_2_1(spx[1]+spx[0]+out_1_1)
+        out_2_2 = self.conv_bn_relu2_2_2(out_2_1+out_1_1)
+        out_3_1 = self.conv_bn_relu2_3_1(spx[2]+spx[1]+out_2_1+out_2_2)
+        out_3_2 = self.conv_bn_relu2_3_2(out_3_1+out_2_1+out_2_2)
+        out_3_3 = self.conv_bn_relu2_3_3(out_3_2+out_2_2)
+        out_4_1 = self.conv_bn_relu2_4_1(spx[3]+spx[2]+out_3_1+out_3_2+out_3_3)
+        out_4_2 = self.conv_bn_relu2_4_2(out_4_1+out_3_1+out_3_2+out_3_3)
+        out_4_3 = self.conv_bn_relu2_4_3(out_4_2+out_3_2+out_3_3)
+        out_4_4 = self.conv_bn_relu2_4_4(out_4_3+out_3_3)
+        
+        out = torch.cat((out_1_1,out_2_2,out_3_3,out_4_4),1)
         out = self.conv_bn_relu3(out)
+         
 
         if self.downsample is not None:
             x = self.downsample(x)

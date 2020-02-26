@@ -1,7 +1,7 @@
 # encoding: utf-8
 """
-@author: Wenbo Li
-@contact: fenglinglwb@gmail.com
+@author: Yuanhao Cai
+@date:  2020.03
 """
 
 import os, getpass
@@ -47,12 +47,12 @@ class Config:
 
     MODEL.BACKBONE = 'Res-50'
     MODEL.UPSAMPLE_CHANNEL_NUM = 256
-    MODEL.STAGE_NUM = 2
+    MODEL.STAGE_NUM = 1
     MODEL.OUTPUT_NUM = DATASET.KEYPOINT.NUM
 
     MODEL.DEVICE = 'cuda'
 
-    MODEL.WEIGHT = osp.join(ROOT_DIR, 'lib/models/resnet-50_rename.pth')
+    MODEL.WEIGHT = None
 
     # -------- Training Config -------- #
     SOLVER = edict()

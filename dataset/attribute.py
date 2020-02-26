@@ -1,6 +1,6 @@
 """
-@author: Wenbo Li
-@contact: fenglinglwb@gmail.com
+@author: Yuanhao Cai
+@date:  2020.03
 """
 
 from easydict import EasyDict as edict

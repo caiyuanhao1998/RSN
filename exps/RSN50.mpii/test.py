@@ -1,6 +1,6 @@
 """
-@author: Wenbo Li
-@contact: fenglinglwb@gmail.com
+@author: Yuanhao Cai
+@date:  2020.03
 """
 
 import os
@@ -8,7 +8,6 @@ import argparse
 from tqdm import tqdm
 import numpy as np
 import cv2
-import json
 
 import torch
 import torch.distributed as dist
@@ -100,20 +99,10 @@ def compute_on_dataset(model, data_loader, device):
         preds, maxvals = get_results(outputs, centers, scales,
                 cfg.TEST.GAUSSIAN_KERNEL, cfg.TEST.SHIFT_RATIOS)
 
-        kp_scores = maxvals.squeeze().mean(axis=1)
         preds = np.concatenate((preds, maxvals), axis=2)
+        results.append(preds)
 
-        for i in range(preds.shape[0]):
-            keypoints = preds[i].reshape(-1).tolist()
-            score = scores[i] * kp_scores[i]
-            image_id = img_ids[i]
-
-            results.append(dict(image_id=image_id,
-                                category_id=1,
-                                keypoints=keypoints,
-                                score=score))
-
-    return results
+    return results 
 
 
 def _accumulate_predictions_from_multiple_gpus(predictions_per_gpu, logger):
@@ -125,8 +114,9 @@ def _accumulate_predictions_from_multiple_gpus(predictions_per_gpu, logger):
         return
 
     predictions = list()
-    for p in all_predictions:
-        predictions.extend(p)
+    for pred in all_predictions:
+        predictions.extend(pred)
+    predictions = np.vstack(predictions) 
     
     return predictions
 
@@ -184,15 +174,9 @@ def main():
     synchronize()
 
     if is_main_process():
-        logger.info("Dumping results ...")
-        results.sort(
-                key=lambda res:(res['image_id'], res['score']), reverse=True) 
-        results_path = os.path.join(cfg.TEST_DIR, 'results.json')
-        with open(results_path, 'w') as f:
-            json.dump(results, f)
         logger.info("Get all results.")
 
-        data_loader.ori_dataset.evaluate(results_path)
+        data_loader.ori_dataset.evaluate(results)
 
 
 if __name__ == '__main__':

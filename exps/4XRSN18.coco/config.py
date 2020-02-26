@@ -1,7 +1,7 @@
 # encoding: utf-8
 """
-@author: Wenbo Li
-@contact: fenglinglwb@gmail.com
+@author: Yuanhao Cai
+@date:  2020.03
 """
 
 import os, getpass
@@ -11,6 +11,7 @@ import argparse
 from easydict import EasyDict as edict
 from dataset.attribute import load_dataset
 from cvpack.utils.pyt_utils import ensure_dir
+
 
 class Config:
     # -------- Directoy Config -------- #
@@ -28,7 +29,7 @@ class Config:
     DATALOADER.SIZE_DIVISIBILITY = 0
 
     DATASET = edict()
-    DATASET.NAME = 'MPII'
+    DATASET.NAME = 'COCO'
     dataset = load_dataset(DATASET.NAME)
     DATASET.KEYPOINT = dataset.KEYPOINT
 
@@ -46,20 +47,20 @@ class Config:
 
     MODEL.BACKBONE = 'Res-50'
     MODEL.UPSAMPLE_CHANNEL_NUM = 256
-    MODEL.STAGE_NUM = 2
+    MODEL.STAGE_NUM = 4
     MODEL.OUTPUT_NUM = DATASET.KEYPOINT.NUM
 
     MODEL.DEVICE = 'cuda'
 
-    MODEL.WEIGHT = osp.join(ROOT_DIR, 'lib/models/resnet-50_rename.pth')
+    MODEL.WEIGHT = None
 
     # -------- Training Config -------- #
     SOLVER = edict()
     SOLVER.BASE_LR = 5e-4 
-    SOLVER.CHECKPOINT_PERIOD = 1600 
+    SOLVER.CHECKPOINT_PERIOD = 2400 
     SOLVER.GAMMA = 0.5
     SOLVER.IMS_PER_GPU = 32
-    SOLVER.MAX_ITER = 28800 
+    SOLVER.MAX_ITER = 96000 
     SOLVER.MOMENTUM = 0.9
     SOLVER.OPTIMIZER = 'Adam'
     SOLVER.WARMUP_FACTOR = 0.1
@@ -73,7 +74,7 @@ class Config:
     LOSS.TOPK = 8
     LOSS.COARSE_TO_FINE = True
 
-    RUN_EFFICIENT = True
+    RUN_EFFICIENT = False 
     # -------- Test Config -------- #
     TEST = dataset.TEST
     TEST.IMS_PER_GPU = 32 
