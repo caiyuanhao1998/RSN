@@ -52,7 +52,7 @@ level (we define consecutive feature maps with the same spatial size as one leve
 | 4×RSN-50 | test | 256x256 | 98.5 | 97.3 | 93.9 | 89.9 | 92.0 | 90.6 | 86.8 | 93.0 |
 
 #### Note
-* \+ means using model ensemble.
+* \+ means using ensemble models.
 
 ## Repo Structure
 This repo is organized as following:
