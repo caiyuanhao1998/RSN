@@ -40,6 +40,11 @@ level (we define consecutive feature maps with the same spatial size as one leve
 | 4×RSN-50 | 384x288 | 70.9 | 78.6 | 94.3 | 86.6 | 75.5 | 83.3 | 83.8 |
 | 4×RSN-50<sup>\+</sup> | - | - | 79.2 | 94.4 | 87.1 | 76.1 | 83.8 | 84.1 |
 
+### Results on COCO test-challenge dataset
+| Model | Input Size | GFLOPs | AP | AP<sup>50</sup> | AP<sup>75</sup> | AP<sup>M</sup> | AP<sup>L</sup> | AR |
+| :-----------------: | :-----------: | :--------: | :------: | :------: | :------: | :------: | :------: | :------: |
+| 4×RSN-50<sup>\+</sup> | - | - | 77.1 | 93.3 | 83.6 | 72.2 | 83.6 | 82.6 |
+
 ### Results on MPII dataset
 | Model | Split | Input Size | Head | Shoulder | Elbow | Wrist | Hip | Knee | Ankle | Mean |
 | :-----------------: | :------------------: | :-----------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: |
