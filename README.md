@@ -118,7 +118,7 @@ $RSN_HOME
 
 1. Download images from [COCO website][4], and put train2014/val2014 splits into **$RSN_HOME/dataset/COCO/images/** respectively.
 
-2. Download ground truth from [Google Drive][6], and put it into **$RSN_HOME/dataset/COCO/gt_json/**.
+2. Download ground truth from [Google Drive][6] or [Baidu Drive][10], and put it into **$RSN_HOME/dataset/COCO/gt_json/**.
 
 3. Download detection result from [Google Drive][6], and put it into **$RSN_HOME/dataset/COCO/det_json/**.
 
@@ -189,3 +189,4 @@ You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 [7]: https://github.com/megvii-detection/tf-cpn
 [8]: https://arxiv.org/abs/1711.07319
 [9]: https://github.com/fenglinglwb/MSPN
+[10]: https://pan.baidu.com/s/1_NvKLx1DIC4D1KUCiQYEkg
