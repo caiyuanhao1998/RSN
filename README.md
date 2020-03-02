@@ -185,7 +185,7 @@ You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 [3]: https://github.com/cocodataset/cocoapi
 [4]: http://cocodataset.org/#download
 [5]: http://human-pose.mpi-inf.mpg.de/
-[6]: https://drive.google.com/open?id=1MW27OY_4YetEZ4JiD4PltFGL_1-caECy
+[6]: https://drive.google.com/open?id=14zW0YZ0A9kPMNt_wjBpQZg5xBiW5ecPd
 [7]: https://github.com/megvii-detection/tf-cpn
 [8]: https://arxiv.org/abs/1711.07319
 [9]: https://github.com/fenglinglwb/MSPN
