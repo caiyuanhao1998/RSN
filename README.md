@@ -118,17 +118,17 @@ $RSN_HOME
 
 1. Download images from [COCO website][4], and put train2014/val2014 splits into **$RSN_HOME/dataset/COCO/images/** respectively.
 
-2. Download ground truth from [Google Drive][6] or [Baidu Drive][10], and put it into **$RSN_HOME/dataset/COCO/gt_json/**.
+2. Download ground truth from [Google Drive][6] or [Baidu Drive][10] (code: fc51), and put it into **$RSN_HOME/dataset/COCO/gt_json/**.
 
-3. Download detection result from [Google Drive][6], and put it into **$RSN_HOME/dataset/COCO/det_json/**.
+3. Download detection result from [Google Drive][6] or [Baidu Drive][10] (code: fc51), and put it into **$RSN_HOME/dataset/COCO/det_json/**.
 
 #### MPII
 
 1. Download images from [MPII website][5], and put images into **$RSN_HOME/dataset/MPII/images/**.
 
-2. Download ground truth from [Google Drive][6], and put it into **$RSN_HOME/dataset/MPII/gt_json/**.
+2. Download ground truth from [Google Drive][6] or [Baidu Drive][10] (code: fc51), and put it into **$RSN_HOME/dataset/MPII/gt_json/**.
 
-3. Download detection result from [Google Drive][6], and put it into **$RSN_HOME/dataset/MPII/det_json/**.
+3. Download detection result from [Google Drive][6] or [Baidu Drive][10] (code: fc51), and put it into **$RSN_HOME/dataset/MPII/det_json/**.
 
 ### Model
 For your convenience, We provide well-trained RSN-18, RSN-50, 4×RSN-18 for COCO and RSN-18, RSN-50 for MPII.
@@ -189,4 +189,4 @@ You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 [7]: https://github.com/megvii-detection/tf-cpn
 [8]: https://arxiv.org/abs/1711.07319
 [9]: https://github.com/fenglinglwb/MSPN
-[10]: https://pan.baidu.com/s/1_NvKLx1DIC4D1KUCiQYEkg
+[10]: https://pan.baidu.com/s/1MqpmR7EkZu3G_Hi0_4NFTA
