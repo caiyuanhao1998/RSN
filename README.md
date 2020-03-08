@@ -180,7 +180,7 @@ And the [code][7] of [Cascaded Pyramid Network][8] is also available.
 ## Contact
 You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 
-[1]: http://cocodataset.org/
+[1]: http://cocodataset.org/#keypoints-leaderboard
 [2]: https://pytorch.org/
 [3]: https://github.com/cocodataset/cocoapi
 [4]: http://cocodataset.org/#download
