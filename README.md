@@ -142,7 +142,7 @@ mkdir $RSN_HOME/model_logs
 ### Train
 Go to specified experiment repository, e.g.
 ```
-cd $RSN_HOME/exps/rsn.2xstg.coco
+cd $RSN_HOME/exps/RSN50.coco
 ```
 and run:
 ```
