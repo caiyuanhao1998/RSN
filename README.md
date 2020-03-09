@@ -8,6 +8,9 @@ In this paper, we propose a novel method called Residual Steps Network (RSN). RS
 ## Pipieline of Multi-stage Residual Steps Network
 ![Overview of RSN.](/figures/pipeline_v2.png)
 
+## Architecture of the proposed Pose Refine Machine
+![Overview of RSN.](/figures/RM.png)
+
 
 ## Some prediction resullts of our method on COCO and MPII valid datasets
 ![Prediction Results of COCO-valid.](/figures/results.png)
