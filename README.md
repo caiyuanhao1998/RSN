@@ -55,6 +55,7 @@ In this paper, we propose a novel method called Residual Steps Network (RSN). RS
 
 #### Note
 * \+ means using ensemble models.
+* All models are trained on 8 V100 GPU
 
 ## Repo Structure
 This repo is organized as following:
