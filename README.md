@@ -1,4 +1,4 @@
-# Residual Steps Network for Multi-Person Pose Estimation
+# Learning Delicate Local Representations for Multi-Person Pose Estimation
 
 ## Introduction
 This is a pytorch realization of Residual Steps Network **which won 2019 COCO Keypoints Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
