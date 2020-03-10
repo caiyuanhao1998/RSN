@@ -16,7 +16,7 @@ from cvpack.utils.pyt_utils import ensure_dir
 class Config:
     # -------- Directoy Config -------- #
     USER = getpass.getuser()
-    ROOT_DIR = os.environ['MSPN_HOME']
+    ROOT_DIR = os.environ['RSN_HOME']
     OUTPUT_DIR = osp.join(ROOT_DIR, 'model_logs', USER,
             osp.split(osp.split(osp.realpath(__file__))[0])[1])
     TEST_DIR = osp.join(OUTPUT_DIR, 'test_dir')

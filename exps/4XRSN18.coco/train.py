@@ -13,7 +13,7 @@ from cvpack.torch_modeling.engine.engine import Engine
 from cvpack.utils.pyt_utils import ensure_dir
 
 from config import cfg
-from network import MSPN 
+from network import RSN 
 from lib.utils.dataloader import get_train_loader
 from lib.utils.solver import make_lr_scheduler, make_optimizer
 
@@ -27,7 +27,7 @@ def main():
         args = parser.parse_args()
         ensure_dir(cfg.OUTPUT_DIR)
 
-        model = MSPN(cfg, run_efficient=cfg.RUN_EFFICIENT)
+        model = RSN(cfg, run_efficient=cfg.RUN_EFFICIENT)
         device = torch.device(cfg.MODEL.DEVICE)
         model.to(device)
 

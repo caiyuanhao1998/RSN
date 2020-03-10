@@ -16,7 +16,7 @@ import torch.distributed as dist
 from cvpack.utils.logger import get_logger
 
 from config import cfg
-from network import MSPN
+from network import RSN
 from lib.utils.dataloader import get_test_loader
 from lib.utils.comm import is_main_process, synchronize, all_gather
 from lib.utils.transforms import flip_back
@@ -166,7 +166,7 @@ def main():
     if args.iter == -1:
         logger.info("Please designate one iteration.")
 
-    model = MSPN(cfg)
+    model = RSN(cfg)
     device = torch.device(cfg.MODEL.DEVICE)
     model.to(cfg.MODEL.DEVICE)
 

@@ -334,10 +334,10 @@ class Single_stage_module(nn.Module):
         return res, skip1, skip2, cross_conv
 
 
-class MSPN(nn.Module):
+class RSN(nn.Module):
     
     def __init__(self, cfg, run_efficient=False, **kwargs):
-        super(MSPN, self).__init__()
+        super(RSN, self).__init__()
         self.top = ResNet_top()
         self.stage_num = cfg.MODEL.STAGE_NUM
         self.output_chl_num = cfg.DATASET.KEYPOINT.NUM
@@ -415,7 +415,7 @@ class MSPN(nn.Module):
 
 if __name__ == '__main__':
     from config import cfg
-    mspn = MSPN(cfg, run_efficient=cfg.RUN_EFFICIENT)
+    mspn = RSN(cfg, run_efficient=cfg.RUN_EFFICIENT)
     imgs = torch.randn(2, 3, 256, 192)
     valids = torch.randn(2, 17, 1)
     labels = torch.randn(2, 5, 17, 64, 48)
