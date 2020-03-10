@@ -163,6 +163,15 @@ the ***gpu_num*** is the number of gpus, and ***iter_num*** is the iteration num
 ## Citation
 Please considering citing our projects in your publications if they help your research.
 ```
+@misc{cai2020learning,
+    title={Learning Delicate Local Representations for Multi-Person Pose Estimation},
+    author={Yuanhao Cai and Zhicheng Wang and Zhengxiong Luo and Binyi Yin and Angang Du and Haoqian Wang and Xinyu Zhou and Erjin Zhou and Xiangyu Zhang and Jian Sun},
+    year={2020},
+    eprint={2003.04030},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+
 @article{li2019rethinking,
   title={Rethinking on Multi-Stage Networks for Human Pose Estimation},
   author={Li, Wenbo and Wang, Zhicheng and Yin, Binyi and Peng, Qixiang and Du, Yuming and Xiao, Tianzi and Yu, Gang and Lu, Hongtao and Wei, Yichen and Sun, Jian},
