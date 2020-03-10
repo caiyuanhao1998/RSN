@@ -1,7 +1,7 @@
 # Learning Delicate Local Representations for Multi-Person Pose Estimation
 
 ## Introduction
-This is a pytorch realization of Residual Steps Network **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
+This is a pytorch realization of [Residual Steps Network][1] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
 
 In this paper, we propose a novel method called Residual Steps Network (RSN). RSN aggregates features with the same spatialsize (Intra-level features) efficiently to obtain delicate local representations, which retain rich low-level spatial information and result in pre-cise keypoint localization. In addition, we propose an efficient attention mechanism - Pose Refine Machine (PRM) to further refine the keypointlocations. Our approach won the 1st place of COCO Keypoint Challenge 2019 and achieves state-of-the-art results on both COCO and MPII benchmarks, **without using extra training data and pretrained model**. Our single model achieves 78.6 on COCO test-dev, 93.0 on MPII test dataset. Ensembled models achieve 79.2 on COCO test-dev, 77.1 on COCO test-challenge dataset. The source code is publicly available for further research.
 
@@ -181,7 +181,7 @@ Please considering citing our projects in your publications if they help your re
 And the [code][7] of [Cascaded Pyramid Network][8] is also available. 
 
 ## Contact
-You can contact us by email published in our [paper][1] or 3359145729@qq.com.
+You can contact us by email published in our [paper][11] or 3359145729@qq.com.
 
 [1]: http://cocodataset.org/#keypoints-leaderboard
 [2]: https://pytorch.org/
@@ -193,3 +193,4 @@ You can contact us by email published in our [paper][1] or 3359145729@qq.com.
 [8]: https://arxiv.org/abs/1711.07319
 [9]: https://github.com/fenglinglwb/MSPN
 [10]: https://pan.baidu.com/s/1MqpmR7EkZu3G_Hi0_4NFTA
+[11]: https://arxiv.org/abs/2003.04030
