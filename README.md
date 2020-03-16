@@ -18,7 +18,7 @@ In this paper, we propose a novel method called Residual Steps Network (RSN). RS
 ![Prediction Results of MPII-valid.](/figures/results_mpii.png)
 
 
-## Results
+## Results(MegDL Version)
 
 ### Results on COCO val dataset
 | Model | Input Size | GFLOPs | AP | AP<sup>50</sup> | AP<sup>75</sup> | AP<sup>M</sup> | AP<sup>L</sup> | AR | 
