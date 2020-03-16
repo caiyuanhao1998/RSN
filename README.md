@@ -133,8 +133,6 @@ $RSN_HOME
 
 3. Download detection result from [Google Drive][6] or [Baidu Drive][10] (code: fc51), and put it into **$RSN_HOME/dataset/MPII/det_json/**.
 
-### Model
-For your convenience, We provide well-trained models for COCO and MPII in [Google Drive][6] or [Baidu Drive][10].
 
 ### Log
 Create a directory to save logs and models:
