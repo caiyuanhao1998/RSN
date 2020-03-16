@@ -47,7 +47,7 @@ class conv_bn_relu(nn.Module):
 
 
 class Bottleneck(nn.Module):
-    expansion = 4
+    expansion = 1
 
     def __init__(self, in_planes, planes, stride=1, downsample=None,
             efficient=False):
@@ -272,7 +272,7 @@ class Upsample_module(nn.Module):
     def __init__(self, output_chl_num, output_shape, chl_num=256,
             gen_skip=False, gen_cross_conv=False, efficient=False):
         super(Upsample_module, self).__init__()
-        self.in_planes = [2048, 1024, 512, 256] 
+        self.in_planes = [512, 256, 128, 64] 
         h, w = output_shape
         self.up_sizes = [
                 (h // 8, w // 8), (h // 4, w // 4), (h // 2, w // 2), (h, w)]

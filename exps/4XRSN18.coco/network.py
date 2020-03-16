@@ -148,9 +148,9 @@ class ResNet_downsample_module(nn.Module):
                 efficient=efficient)
         self.layer2 = self._make_layer(block, 128, layers[1], stride=2,
                 efficient=efficient)
-        self.layer3 = self._make_layer(block, 192, layers[2], stride=2,
+        self.layer3 = self._make_layer(block, 256, layers[2], stride=2,
                 efficient=efficient)
-        self.layer4 = self._make_layer(block, 384, layers[3], stride=2,
+        self.layer4 = self._make_layer(block, 512, layers[3], stride=2,
                 efficient=efficient)
 
         for m in self.modules():
@@ -272,7 +272,7 @@ class Upsample_module(nn.Module):
     def __init__(self, output_chl_num, output_shape, chl_num=256,
             gen_skip=False, gen_cross_conv=False, efficient=False):
         super(Upsample_module, self).__init__()
-        self.in_planes = [1536, 768, 512, 256] 
+        self.in_planes = [512, 256, 128, 64] 
         h, w = output_shape
         self.up_sizes = [
                 (h // 8, w // 8), (h // 4, w // 4), (h // 2, w // 2), (h, w)]
