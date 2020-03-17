@@ -53,6 +53,15 @@ In this paper, we propose a novel method called Residual Steps Network (RSN). RS
 | 4×RSN-50 | val | 256x256 | 96.7 | 96.7 | 92.3 | 88.2 | 90.3 | 89.0 | 85.3 | 91.6 |
 | 4×RSN-50 | test | 256x256 | 98.5 | 97.3 | 93.9 | 89.9 | 92.0 | 90.6 | 86.8 | 93.0 |
 
+
+## Results(Pytorch Version)
+### Results on COCO val dataset
+ Model | Input Size | GFLOPs | AP | AP<sup>50</sup> | AP<sup>75</sup> | AP<sup>M</sup> | AP<sup>L</sup> | AR | 
+| :-----------------: | :-----------: | :--------: | :------: |:------: | :------: | :------: | :------: | :------: |
+| Res-18 | 256x192 | 2.3 | 65.2 | 87.3 | 71.5 | 61.2 | 72.2 | 71.3 | 91.4 | 77.0 | 68.7 | 79.5 |
+| Res-18 | 256x192 | 2.5 | 70.4 | 88.8 | 77.7 | 67.2 | 76.7 | 76.5 | 93.0 | 82.8 | 72.2 | 82.5 |
+
+
 #### Note
 * \+ means using ensemble models.
 * All models are trained on 8 V100 GPUs
