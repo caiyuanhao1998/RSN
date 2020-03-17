@@ -54,6 +54,8 @@ In this paper, we propose a novel method called Residual Steps Network (RSN). RS
 | 4×RSN-50 | test | 256x256 | 98.5 | 97.3 | 93.9 | 89.9 | 92.0 | 90.6 | 86.8 | 93.0 |
 
 
+
+
 ## Results(Pytorch Version)
 ### Results on COCO val dataset
  Model | Input Size | GFLOPs | AP | AP<sup>50</sup> | AP<sup>75</sup> | AP<sup>M</sup> | AP<sup>L</sup> | AR | 
