@@ -338,6 +338,7 @@ class PRM(nn.Module):
 
     def __init__(self, output_chl_num, efficient=False):
         super(PRM, self).__init__()
+        self.output_chl_num = output_chl_num
         self.conv_bn_relu_prm_1 = conv_bn_relu(self.output_chl_num, self.output_chl_num, kernel_size=3,
                 stride=1, padding=1, has_bn=True, has_relu=True,
                 efficient=efficient) 
