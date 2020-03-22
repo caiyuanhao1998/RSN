@@ -14,10 +14,10 @@ from lib.utils.loss import JointsL2Loss
 class conv_bn_relu(nn.Module):
 
     def __init__(self, in_planes, out_planes, kernel_size, stride, padding, 
-            has_bn=True, has_relu=True, efficient=False):
+            has_bn=True, has_relu=True, efficient=False,groups=1):
         super(conv_bn_relu, self).__init__()
         self.conv = nn.Conv2d(in_planes, out_planes, kernel_size=kernel_size,
-                stride=stride, padding=padding)
+                stride=stride, padding=padding,groups=groups)
         self.has_bn = has_bn
         self.has_relu = has_relu
         self.efficient = efficient
