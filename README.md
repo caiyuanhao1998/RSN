@@ -68,7 +68,7 @@ In this paper, we propose a novel method called Residual Steps Network (RSN). RS
 #### Note
 * \+ means using ensemble models.
 * All models are trained on 8 V100 GPUs
-* We done all the experiments using our own DL-Platform MegDL, all results in our paper are reported on MegDL. There are some differences between MegDL and Pytorch. MegDL will be released in March. The MegDL code and model will be also publicly avaible then.
+* We done all the experiments using our own DL-Platform MegDL, all results in our paper are reported on MegDL. There are some differences between MegDL and Pytorch. MegDL will be released in March. The MegDL code and model will be also publicly avaible.
 
 ## Repo Structure
 This repo is organized as following:
