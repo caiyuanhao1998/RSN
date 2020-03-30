@@ -342,7 +342,6 @@ class PRM(nn.Module):
         self.conv_bn_relu_prm_1 = conv_bn_relu(self.output_chl_num, self.output_chl_num, kernel_size=3,
                 stride=1, padding=1, has_bn=True, has_relu=True,
                 efficient=efficient) 
-        self.conv_bn_relu_prm_gp = nn.GlobalAvgPool2d() 
         self.conv_bn_relu_prm_2_1 = conv_bn_relu(self.output_chl_num, self.output_chl_num, kernel_size=1,
                 stride=1, padding=0, has_bn=True, has_relu=True,
                 efficient=efficient)
@@ -361,14 +360,14 @@ class PRM(nn.Module):
     def forward(self, x):
         out = self.conv_bn_relu_prm_1(x)
         out_1 = out
-        out_2 = self.conv_bn_relu_prm_gp(out)
+        out_2 = torch.nn.functional.adaptive_avg_pool2d(out_1, (1,1))
         out_2 = self.conv_bn_relu_prm_2_1(out_2)
         out_2 = self.conv_bn_relu_prm_2_2(out_2)
-        out_2 = self.sigmoid(out_2)
-        out_3 = self.conv_bn_relu_prm_3_1(out)
+        out_2 = self.sigmoid2(out_2)
+        out_3 = self.conv_bn_relu_prm_3_1(out_1)
         out_3 = self.conv_bn_relu_prm_3_2(out_3)
         out_3 = self.sigmoid3(out_3)
-        out = out_1 + out_2 + out_3
+        out = out_1.mul(1 + out_2.mul(out_3))
         return out
 
 class RSN(nn.Module):
