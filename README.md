@@ -1,7 +1,7 @@
 # Learning Delicate Local Representations for Multi-Person Pose Estimation
 
 ## News
-Our paper is accepted as Spotlight by ECCV2020
+Our paper has been accepted as Spotlight by ECCV2020
 ## Introduction
 This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
 
