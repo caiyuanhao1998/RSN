@@ -185,19 +185,11 @@ Please considering citing our projects in your publications if they help your re
     primaryClass={cs.CV}
 }
 
-@article{li2019rethinking,
-  title={Rethinking on Multi-Stage Networks for Human Pose Estimation},
-  author={Li, Wenbo and Wang, Zhicheng and Yin, Binyi and Peng, Qixiang and Du, Yuming and Xiao, Tianzi and Yu, Gang and Lu, Hongtao and Wei, Yichen and Sun, Jian},
-  journal={arXiv preprint arXiv:1901.00148},
-  year={2019}
-}
-
-@inproceedings{chen2018cascaded,
-  title={Cascaded pyramid network for multi-person pose estimation},
-  author={Chen, Yilun and Wang, Zhicheng and Peng, Yuxiang and Zhang, Zhiqiang and Yu, Gang and Sun, Jian},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  pages={7103--7112},
-  year={2018}
+@inproceedings{cai2020learning,
+  title={Learning Delicate Local Representations for Multi-Person Pose Estimation},
+  author={Yuanhao Cai and Zhicheng Wang and Zhengxiong Luo and Binyi Yin and Angang Du and Haoqian Wang and Xinyu Zhou and Erjin Zhou and Xiangyu Zhang and Jian Sun},
+  booktitle={ECCV},
+  year={2020}
 }
 ```
 And the [code][7] of [Cascaded Pyramid Network][8] is also available. 
