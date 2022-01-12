@@ -1,4 +1,6 @@
 # Learning Delicate Local Representations for Multi-Person Pose Estimation
+ECCV 2020 Spotlight
+
 
 ## News
 Our paper has been accepted as Spotlight by ECCV2020
@@ -176,20 +178,18 @@ the ***gpu_num*** is the number of gpus, and ***iter_num*** is the iteration num
 ## Citation
 Please considering citing our projects in your publications if they help your research.
 ```
-@misc{cai2020learning,
-    title={Learning Delicate Local Representations for Multi-Person Pose Estimation},
-    author={Yuanhao Cai and Zhicheng Wang and Zhengxiong Luo and Binyi Yin and Angang Du and Haoqian Wang and Xinyu Zhou and Erjin Zhou and Xiangyu Zhang and Jian Sun},
-    year={2020},
-    eprint={2003.04030},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
-}
-
 @inproceedings{cai2020learning,
   title={Learning Delicate Local Representations for Multi-Person Pose Estimation},
   author={Yuanhao Cai and Zhicheng Wang and Zhengxiong Luo and Binyi Yin and Angang Du and Haoqian Wang and Xinyu Zhou and Erjin Zhou and Xiangyu Zhang and Jian Sun},
   booktitle={ECCV},
   year={2020}
+}
+
+@inproceedings{cai2019res,
+  title={Res-steps-net for multi-person pose estimation},
+  author={Cai, Yuanhao and Wang, Zhicheng and Yin, Binyi and Yin, Ruihao and Du, Angang and Luo, Zhengxiong and Li, Zeming and Zhou, Xinyu and Yu, Gang and Zhou, Erjin and others},
+  booktitle={Joint COCO and Mapillary Workshop at ICCV},
+  year={2019}
 }
 ```
 And the [code][7] of [Cascaded Pyramid Network][8] is also available. 
