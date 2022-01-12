@@ -1,5 +1,4 @@
 # Learning Delicate Local Representations for Multi-Person Pose Estimation
-ECCV 2020 Spotlight
 
 
 ## News
