@@ -7,6 +7,7 @@
 
 # Learning Delicate Local Representations for Multi-Person Pose Estimation (ECCV 2020 Spotlight)
 [![winner](https://img.shields.io/badge/Winner-COCO_2019_Keypoint_Challenge-179bd3)](http://cocodataset.org/#keypoints-leaderboard)
+[![bpa](https://img.shields.io/badge/COCO-Best_Paper_Award-179bd3)](https://github.com/caiyuanhao1998/RSN/blob/master/figures/2019_best_paper.png)
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2003.04030)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-179bd3)](https://zhuanlan.zhihu.com/p/112297707)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=caiyuanhao1998/MST-plus-plus)
