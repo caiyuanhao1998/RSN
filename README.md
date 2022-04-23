@@ -15,7 +15,7 @@
 
 #### News
 - **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2022 :rocket: 
-- **2019.09 :** Our work has won the **First** place in COCO 2019 Keypoint Challenge :trophy: 
+- **2019.09 :** Our work won the **First place** and **Best Paper Award** in COCO 2019 Keypoint Challenge :trophy: 
 
 
 <hr />
