@@ -1,12 +1,27 @@
-# Learning Delicate Local Representations for Multi-Person Pose Estimation
+	
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco)](https://paperswithcode.com/sota/keypoint-detection-on-coco?p=learning-delicate-local-representations-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco-test-challenge)](https://paperswithcode.com/sota/keypoint-detection-on-coco-test-challenge?p=learning-delicate-local-representations-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/multi-person-pose-estimation-on-coco)](https://paperswithcode.com/sota/multi-person-pose-estimation-on-coco?p=learning-delicate-local-representations-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-coco-test-dev)](https://paperswithcode.com/sota/pose-estimation-on-coco-test-dev?p=learning-delicate-local-representations-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-mpii-single-person)](https://paperswithcode.com/sota/pose-estimation-on-mpii-single-person?p=learning-delicate-local-representations-for)
+
+# Learning Delicate Local Representations for Multi-Person Pose Estimation (ECCV 2020 Spotlight)
+[![winner](https://img.shields.io/badge/Winner-COCO_2019_Keypoint_Challenge-179bd3)](http://cocodataset.org/#keypoints-leaderboard)
+[![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2003.04030)
+[![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-179bd3)](https://zhuanlan.zhihu.com/p/1122977073)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=caiyuanhao1998/MST-plus-plus)
+
+*This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc.*
+
+#### News
+- **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2022 :rocket: 
+- **2019.09 :** Our work has won the **First** place in COCO 2019 Keypoint Challenge :trophy: 
 
 
-## News
-Our paper has been accepted as Spotlight by ECCV2020
-## Introduction
-This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc. 
+<hr />
 
-In this paper, we propose a novel method called Residual Steps Network (RSN). RSN aggregates features with the same spatialsize (Intra-level features) efficiently to obtain delicate local representations, which retain rich low-level spatial information and result in precise keypoint localization. In addition, we propose an efficient attention mechanism - Pose Refine Machine (PRM) to further refine the keypoint locations. Our approach won the 1st place of COCO Keypoint Challenge 2019 and achieves state-of-the-art results on both COCO and MPII benchmarks, **without using extra training data and pretrained model**. Our single model achieves 78.6 on COCO test-dev, 93.0 on MPII test dataset. Ensembled models achieve 79.2 on COCO test-dev, 77.1 on COCO test-challenge dataset. The source code is publicly available for further research.
+> **Abstract:** *In this paper, we propose a novel method called Residual Steps Network (RSN). RSN aggregates features with the same spatialsize (Intra-level features) efficiently to obtain delicate local representations, which retain rich low-level spatial information and result in precise keypoint localization. In addition, we propose an efficient attention mechanism - Pose Refine Machine (PRM) to further refine the keypoint locations. Our approach won the 1st place of COCO Keypoint Challenge 2019 and achieves state-of-the-art results on both COCO and MPII benchmarks, without using extra training data and pretrained model. Our single model achieves 78.6 on COCO test-dev, 93.0 on MPII test dataset. Ensembled models achieve 79.2 on COCO test-dev, 77.1 on COCO test-challenge dataset. The source code is publicly available for further research.*
+<hr />
 
 ## Pipieline of Multi-stage Residual Steps Network
 ![Overview of RSN.](/figures/pipeline_v2.png)
