@@ -10,7 +10,7 @@
 [![bpa](https://img.shields.io/badge/COCO-Best_Paper_Award-179bd3)](https://github.com/caiyuanhao1998/RSN/blob/master/figures/2019_best_paper.png)
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2003.04030)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-179bd3)](https://zhuanlan.zhihu.com/p/112297707)
-![visitors](https://visitor-badge.glitch.me/badge?page_id=caiyuanhao1998/MST-plus-plus)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=caiyuanhao1998/RSN)
 
 *This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc.*
 
