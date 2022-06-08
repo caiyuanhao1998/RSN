@@ -15,7 +15,7 @@
 *This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc.*
 
 #### News
-- **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2022 :rocket: 
+- **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2020 :rocket: 
 - **2019.09 :** Our work won the **First place** and **Best Paper Award** in COCO 2019 Keypoint Challenge :trophy: 
 
 
