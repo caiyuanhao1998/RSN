@@ -12,7 +12,7 @@
 [![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-179bd3)](https://zhuanlan.zhihu.com/p/112297707)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=caiyuanhao1998/RSN)
 
-*This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**. The original repo is based on the inner deep learning framework (MegBrain) in Megvii Inc.*
+*This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**.
 
 #### News
 - **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2020 :rocket: 
@@ -37,7 +37,7 @@
 ![Prediction Results of MPII-valid.](/figures/results_mpii.png)
 
 
-## Results(MegDL Version)
+## Results(Original Version)
 
 ### Results on COCO val dataset
 | Model | Input Size | GFLOPs | AP | AP<sup>50</sup> | AP<sup>75</sup> | AP<sup>M</sup> | AP<sup>L</sup> | AR | 
@@ -87,7 +87,7 @@
 #### Note
 * \+ means using ensemble models.
 * All models are trained on 8 V100 GPUs
-* We done all the experiments using our own DL-Platform MegDL, all results in our paper are reported on MegDL. There are some differences between MegDL and Pytorch. MegDL will be released in March. The MegDL code and model will be also publicly avaible.
+* We done all the experiments using our orginal DL-Platform, all results in our paper are reported on this DL-Platform. There are some differences between it and Pytorch.
 
 ## Repo Structure
 This repo is organized as following:
@@ -207,10 +207,7 @@ Please considering citing our projects in your publications if they help your re
   year={2019}
 }
 ```
-And the [code][7] of [Cascaded Pyramid Network][8] is also available. 
 
-## Contact
-You can contact us by email published in our [paper][11].
 
 [1]: http://cocodataset.org/#keypoints-leaderboard
 [2]: https://pytorch.org/
@@ -218,8 +215,5 @@ You can contact us by email published in our [paper][11].
 [4]: http://cocodataset.org/#download
 [5]: http://human-pose.mpi-inf.mpg.de/
 [6]: https://drive.google.com/open?id=14zW0YZ0A9kPMNt_wjBpQZg5xBiW5ecPd
-[7]: https://github.com/megvii-detection/tf-cpn
-[8]: https://arxiv.org/abs/1711.07319
-[9]: https://github.com/fenglinglwb/MSPN
 [10]: https://pan.baidu.com/s/1MqpmR7EkZu3G_Hi0_4NFTA
 [11]: https://arxiv.org/abs/2003.04030
