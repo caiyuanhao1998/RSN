@@ -1,9 +1,11 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco)](https://paperswithcode.com/sota/keypoint-detection-on-coco?p=learning-delicate-local-representations-for)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-mpii-single-person)](https://paperswithcode.com/sota/pose-estimation-on-mpii-single-person?p=learning-delicate-local-representations-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-coco-test-dev)](https://paperswithcode.com/sota/pose-estimation-on-coco-test-dev?p=learning-delicate-local-representations-for)
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco-test-challenge)](https://paperswithcode.com/sota/keypoint-detection-on-coco-test-challenge?p=learning-delicate-local-representations-for)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/multi-person-pose-estimation-on-coco)](https://paperswithcode.com/sota/multi-person-pose-estimation-on-coco?p=learning-delicate-local-representations-for)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco)](https://paperswithcode.com/sota/keypoint-detection-on-coco?p=learning-delicate-local-representations-for)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-coco-test-dev)](https://paperswithcode.com/sota/pose-estimation-on-coco-test-dev?p=learning-delicate-local-representations-for)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-mpii-single-person)](https://paperswithcode.com/sota/pose-estimation-on-mpii-single-person?p=learning-delicate-local-representations-for)
 
 
 
@@ -12,7 +14,6 @@
 [![bpa](https://img.shields.io/badge/COCO-Best_Paper_Award-179bd3)](https://github.com/caiyuanhao1998/RSN/blob/master/figures/2019_best_paper.png)
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2003.04030)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-179bd3)](https://zhuanlan.zhihu.com/p/112297707)
-![visitors](https://visitor-badge.glitch.me/badge?page_id=caiyuanhao1998/RSN)
 
 *This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**.
 
