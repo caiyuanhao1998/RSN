@@ -18,7 +18,7 @@
 *This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**.
 
 <div align="center">
-<p align="center"> <img src="figures/2019_winner.png" width="420px">  <img src="figures/2019_best_paper.png" width="420px"></p>
+<p align="center"> <img src="figures/2019_winner.png" width="410px">  <img src="figures/2019_best_paper.png" width="410px"></p>
 </div>
 
 #### News
