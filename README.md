@@ -22,6 +22,7 @@
 </div>
 
 #### News
+- **2020.09 :** Our RSN has been integrated into the great [MMPose](https://github.com/open-mmlab/mmpose) framework. Thanks to their effort. Welcome to use their [codebase](https://github.com/open-mmlab/mmpose) with their [pre-trained model zoo](https://mmpose.readthedocs.io/en/latest/model_zoo_papers/backbones.html#rsn-eccv-2020). ⭐
 - **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2020 :rocket: 
 - **2019.09 :** Our work won the **First place** and **Best Paper Award** in COCO 2019 Keypoint Challenge :trophy: 
 
