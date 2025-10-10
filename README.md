@@ -1,14 +1,3 @@
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco)](https://paperswithcode.com/sota/keypoint-detection-on-coco?p=learning-delicate-local-representations-for)
-
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-mpii-single-person)](https://paperswithcode.com/sota/pose-estimation-on-mpii-single-person?p=learning-delicate-local-representations-for)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/pose-estimation-on-coco-test-dev)](https://paperswithcode.com/sota/pose-estimation-on-coco-test-dev?p=learning-delicate-local-representations-for)
-
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/keypoint-detection-on-coco-test-challenge)](https://paperswithcode.com/sota/keypoint-detection-on-coco-test-challenge?p=learning-delicate-local-representations-for)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-delicate-local-representations-for/multi-person-pose-estimation-on-coco)](https://paperswithcode.com/sota/multi-person-pose-estimation-on-coco?p=learning-delicate-local-representations-for)
-
-
-
-
 # Learning Delicate Local Representations for Multi-Person Pose Estimation (ECCV 2020 Spotlight)
 [![winner](https://img.shields.io/badge/Winner-COCO_2019_Keypoint_Challenge-179bd3)](http://cocodataset.org/#keypoints-leaderboard)
 [![bpa](https://img.shields.io/badge/COCO-Best_Paper_Award-179bd3)](https://github.com/caiyuanhao1998/RSN/blob/master/figures/2019_best_paper.png)
