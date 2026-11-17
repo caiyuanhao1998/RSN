@@ -92,9 +92,9 @@ def main():
                     log_str = 'Iter:%d, LR:%.1e, ' % (
                         iteration, optimizer.param_groups[0]["lr"] / num_gpu)
                     for key in loss_dict:
-                        tb_writer.add_scalar(
-                            key,  loss_dict[key].mean(), global_step=iteration)
-                        log_str += key + ': %.3f, ' % float(loss_dict[key])
+                        loss_value = loss_dict[key].detach().mean().item()
+                        tb_writer.add_scalar(key, loss_value, global_step=iteration)
+                        log_str += key + ': %.3f, ' % loss_value
 
                     time2 = time.time()
                     elapsed_time = time2 - time1

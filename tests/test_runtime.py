@@ -126,3 +126,34 @@ def test_mpii_pckh_point_one_threshold(monkeypatch, capsys):
     predictions[:, :, 0] += 0.105 * 0.6
     dataset.evaluate(predictions)
     assert "('Mean@0.1', 0.0)" in capsys.readouterr().out
+
+
+class UnsupportedCheckpointMetadata:
+    """Ordinary Python objects must not be unpickled by checkpoint loaders."""
+
+
+@pytest.mark.parametrize('loader', ['engine', 'model'])
+def test_checkpoint_rejects_python_objects(loader, monkeypatch, tmp_path):
+    import logging
+    import pickle
+    from cvpack.torch_modeling.engine.engine import Engine
+    from cvpack.torch_modeling.engine.checkpoint import load_model
+
+    model = torch.nn.Linear(2, 1)
+    checkpoint = tmp_path / 'python-object.pth'
+    torch.save({'model': model.state_dict(),
+                'metadata': UnsupportedCheckpointMetadata()}, checkpoint)
+    if loader == 'engine':
+        for name in ('WORLD_SIZE', 'RANK', 'LOCAL_RANK'):
+            monkeypatch.delenv(name, raising=False)
+        monkeypatch.setattr(sys, 'argv', ['train.py'])
+        monkeypatch.setattr(torch.cuda, 'device_count', lambda: 1)
+        monkeypatch.setattr(torch.cuda, 'set_device', lambda _: None)
+        engine = Engine(EasyDict())
+        engine.register_state(model=model)
+        engine.setup_log('test_restricted_checkpoint', str(tmp_path))
+        with pytest.raises(pickle.UnpicklingError):
+            engine.load_checkpoint(str(checkpoint))
+    else:
+        with pytest.raises(pickle.UnpicklingError):
+            load_model(model, str(checkpoint), logging.getLogger('restricted_model'))

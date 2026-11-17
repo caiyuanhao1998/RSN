@@ -175,7 +175,7 @@ def main():
         raise FileNotFoundError(model_file)
     if os.path.exists(model_file):
         state_dict = torch.load(
-                model_file, map_location=lambda storage, loc: storage)
+                model_file, map_location="cpu", weights_only=True)
         state_dict = state_dict['model']
         model.load_state_dict(state_dict)
 

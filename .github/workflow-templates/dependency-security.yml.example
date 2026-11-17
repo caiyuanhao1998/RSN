@@ -1,0 +1,32 @@
+# Template: copy to .github/workflows/dependency-security.yml to enable.
+name: Dependency security
+
+on:
+  push:
+    paths:
+      - 'requirements*.txt'
+      - 'scripts/audit_requirements.py'
+      - '.github/workflows/dependency-security.yml'
+  pull_request:
+    paths:
+      - 'requirements*.txt'
+      - 'scripts/audit_requirements.py'
+      - '.github/workflows/dependency-security.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pip-audit==2.10.1
+      - name: Audit all locked upstream package versions
+        run: |
+          python scripts/audit_requirements.py requirements-lock.txt > "$RUNNER_TEMP/rsn-audit.txt"
+          python -m pip_audit --strict --no-deps --disable-pip --progress-spinner off -r "$RUNNER_TEMP/rsn-audit.txt"

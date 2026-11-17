@@ -155,7 +155,7 @@ class Engine(object):
                 load_c2_format
             loaded = load_c2_format(self.cfg, weights)
         else:
-            loaded = torch.load(weights, map_location=torch.device("cpu"))
+            loaded = torch.load(weights, map_location=torch.device("cpu"), weights_only=True)
 
         t_io_end = time.time()
         if "model" not in loaded:

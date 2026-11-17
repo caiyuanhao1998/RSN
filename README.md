@@ -126,7 +126,11 @@ $RSN_HOME
 
 For the verified local Python/CUDA environment, dataset locations, runtime fixes, and reproducible smoke checks, see [LOCAL_SETUP.md](LOCAL_SETUP.md).
 
-1. Install Pytorch referring to [Pytorch website][2].
+1. Install the tested PyTorch 2.13.0 / torchvision 0.28.0 pair (CUDA 12.6 example):
+ ```
+ pip3 install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cu126
+ ```
+ Choose a matching CPU/CUDA build for your platform from the [PyTorch website][2].
 
 2. Clone this repo, and config **RSN_HOME** in **/etc/profile** or **~/.bashrc**, e.g.
  ```

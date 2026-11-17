@@ -6,7 +6,7 @@ from collections import OrderedDict
 def load_model(model, model_file, logger, is_restore=False):
     t_start = time.time()
     if isinstance(model_file, str):
-        state_dict = torch.load(model_file)
+        state_dict = torch.load(model_file, map_location="cpu", weights_only=True)
         if 'model' in state_dict.keys():
             state_dict = state_dict['model']
     else:
