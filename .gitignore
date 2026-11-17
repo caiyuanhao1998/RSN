@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+model_logs
+exps/*/log
+dataset/*/images
+dataset/*/gt_json
+dataset/*/det_json
+.venv/
+.runtime/
+scripts/env.local.sh

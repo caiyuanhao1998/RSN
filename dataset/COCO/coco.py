@@ -34,7 +34,7 @@ class COCODataset(JointsDataset):
         self.test_det_path = os.path.join(self.cur_dir, 'det_json',
                 self.test_det_file)
 
-        self._exception_ids = ['366379']
+        self._exception_ids = {366379}
 
         self.data = self._get_data()
         self.data_num = len(self.data)
@@ -67,7 +67,7 @@ class COCODataset(JointsDataset):
 
                 bbox = np.array(ann['bbox'])
                 area = ann['area']
-                joints = np.array(ann['keypoints']).reshape((-1, 3))
+                joints = np.array(ann['keypoints'], dtype=np.float32).reshape((-1, 3))
                 headRect = np.array([0, 0, 1, 1], np.int32)
 
                 center, scale = self._bbox_to_center_and_scale(bbox)

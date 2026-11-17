@@ -5,3 +5,7 @@ matplotlib
 tqdm
 coloredlogs
 tensorboardX
+easydict
+scipy
+opencv-python-headless
+pycocotools

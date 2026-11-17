@@ -13,7 +13,7 @@ from cvpack.torch_modeling.engine.engine import Engine
 from cvpack.utils.pyt_utils import ensure_dir
 
 from config import cfg
-from network import RSN 
+from network import MSPN as RSN
 from lib.utils.dataloader import get_train_loader
 from lib.utils.solver import make_lr_scheduler, make_optimizer
 
@@ -35,7 +35,8 @@ def main():
         # default num_gpu: 8, adjust iter settings
         cfg.SOLVER.CHECKPOINT_PERIOD = \
                 int(cfg.SOLVER.CHECKPOINT_PERIOD * 8 / num_gpu)
-        cfg.SOLVER.MAX_ITER = int(cfg.SOLVER.MAX_ITER * 8 / num_gpu)
+        cfg.SOLVER.MAX_ITER = (int(cfg.SOLVER.MAX_ITER * 8 / num_gpu)
+                               if args.max_iters is None else args.max_iters)
         optimizer = make_optimizer(cfg, model, num_gpu)
         scheduler = make_lr_scheduler(cfg, optimizer)
 
@@ -53,7 +54,9 @@ def main():
             if cfg.MODEL.WEIGHT:
                 engine.load_checkpoint(cfg.MODEL.WEIGHT, is_restore=False)
 
-        data_loader = get_train_loader(cfg, num_gpu=num_gpu, is_dist=engine.distributed)
+        data_loader = get_train_loader(
+            cfg, num_gpu=num_gpu, is_dist=engine.distributed,
+            start_iter=engine.state.iteration)
 
         # ------------ do training ---------------------------- #
         logger.info("\n\nStart training with pytorch version {}".format(
@@ -61,7 +64,7 @@ def main():
 
         max_iter = len(data_loader)
         checkpoint_period = cfg.SOLVER.CHECKPOINT_PERIOD
-        tb_writer = SummaryWriter(cfg.TENSORBOARD_DIR)
+        tb_writer = SummaryWriter(cfg.TENSORBOARD_DIR) if engine.world_rank == 0 else None
 
         model.train()
 
@@ -73,18 +76,18 @@ def main():
             valids = valids.to(device)
             labels = labels.to(device)
 
-            scheduler.step()
             loss_dict = model(images, valids, labels)
             losses = sum(loss for loss in loss_dict.values())
 
             optimizer.zero_grad()
             losses.backward()
             optimizer.step()
+            scheduler.step()
 
             if cfg.RUN_EFFICIENT:
                 del images, valids, labels, losses
 
-            if engine.local_rank == 0:
+            if engine.world_rank == 0:
                 if iteration % 20 == 0 or iteration == max_iter:
                     log_str = 'Iter:%d, LR:%.1e, ' % (
                         iteration, optimizer.param_groups[0]["lr"] / num_gpu)
@@ -105,7 +108,7 @@ def main():
 
             if iteration % checkpoint_period == 0 or iteration == max_iter:
                 engine.update_iteration(iteration)
-                if engine.distributed and (engine.local_rank == 0):
+                if engine.distributed and (engine.world_rank == 0):
                     engine.save_and_link_checkpoint(cfg.OUTPUT_DIR)
                 elif not engine.distributed:
                     engine.save_and_link_checkpoint(cfg.OUTPUT_DIR)
@@ -113,6 +116,9 @@ def main():
             if iteration >= max_iter:
                 logger.info('Finish training process!')
                 break
+
+        if tb_writer is not None:
+            tb_writer.close()
 
 
 if __name__ == "__main__":

@@ -48,6 +48,17 @@ class Engine(object):
         self.args = self.parser.parse_args()
 
         self.continue_state_object = self.args.continue_fpath
+        self.local_rank = self.args.local_rank
+        self.world_rank = 0
+        self.world_size = 1
+        if self.args.batch_size is not None:
+            cfg.SOLVER.IMS_PER_GPU = self.args.batch_size
+        if self.args.num_workers is not None:
+            cfg.DATALOADER.NUM_WORKERS = self.args.num_workers
+        if self.args.output_dir:
+            cfg.OUTPUT_DIR = osp.abspath(self.args.output_dir)
+            cfg.TEST_DIR = osp.join(cfg.OUTPUT_DIR, 'test_dir')
+            cfg.TENSORBOARD_DIR = osp.join(cfg.OUTPUT_DIR, 'tb_dir')
 
         if 'WORLD_SIZE' in os.environ:
             self.distributed = int(os.environ['WORLD_SIZE']) > 1
@@ -61,14 +72,15 @@ class Engine(object):
             dist.barrier()
             self.devices = [i for i in range(self.world_size)]
         else:
-            # todo check non-distributed training
-            self.world_rank = 1
             self.devices = parse_torch_devices(self.args.devices)
+            if len(self.devices) != 1:
+                raise ValueError('Use torchrun for training on multiple GPUs')
+            torch.cuda.set_device(self.devices[0])
 
-    def setup_log(self, name='train', log_dir=None, file_name=None):
+    def setup_log(self, name='train', log_dir=None, file_name='log.txt'):
         if not self.logger:
             self.logger = get_logger(
-                name, log_dir, self.args.local_rank, filename=file_name)
+                name, log_dir, self.world_rank, filename=file_name)
         else:
             self.logger.warning('already exists logger')
         return self.logger
@@ -83,8 +95,16 @@ class Engine(object):
             dest="continue_fpath",
             help='continue from one certain checkpoint')
         p.add_argument(
-            '--local_rank', default=0, type=int,
+            '--local-rank', '--local_rank', dest='local_rank',
+            default=int(os.environ.get('LOCAL_RANK', 0)), type=int,
             help='process rank on node')
+        p.add_argument('--max-iters', type=int, default=None,
+                       help='total iterations, overriding GPU-based scaling')
+        p.add_argument('--batch-size', type=int, default=None,
+                       help='training images per GPU')
+        p.add_argument('--num-workers', type=int, default=None)
+        p.add_argument('--output-dir', default=None)
+
 
     def register_state(self, **kwargs):
         self.state.register(**kwargs)
@@ -145,11 +165,11 @@ class Engine(object):
             self.state.model, loaded['model'], self.logger,
             is_restore=is_restore)
 
-        if "optimizer" in loaded:
+        if "optimizer" in loaded and self.state.optimizer is not None:
             self.state.optimizer.load_state_dict(loaded['optimizer'])
         if "iteration" in loaded:
             self.state.iteration = loaded['iteration']
-        if "scheduler" in loaded:
+        if "scheduler" in loaded and self.state.scheduler is not None:
             self.state.scheduler.load_state_dict(loaded["scheduler"])
         del loaded
 
@@ -173,7 +193,9 @@ class Engine(object):
 
     def __exit__(self, type, value, tb):
         torch.cuda.empty_cache()
-        if type is not None:
+        if self.distributed and dist.is_initialized():
+            dist.destroy_process_group()
+        if type is not None and self.logger is not None:
             self.logger.warning(
                 "A exception occurred during Engine initialization, "
                 "give up running process")

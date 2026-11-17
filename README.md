@@ -124,6 +124,8 @@ $RSN_HOME
 
 ### Installation
 
+For the verified local Python/CUDA environment, dataset locations, runtime fixes, and reproducible smoke checks, see [LOCAL_SETUP.md](LOCAL_SETUP.md).
+
 1. Install Pytorch referring to [Pytorch website][2].
 
 2. Clone this repo, and config **RSN_HOME** in **/etc/profile** or **~/.bashrc**, e.g.
@@ -172,7 +174,7 @@ mkdir $RSN_HOME/model_logs
 ### Train
 Go to specified experiment repository, e.g.
 ```
-cd $RSN_HOME/exps/RSN50.coco
+cd $RSN_HOME/exps/RSN18.coco
 ```
 and run:
 ```

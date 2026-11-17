@@ -49,7 +49,9 @@ class DistributedSampler(Sampler):
             indices = torch.arange(len(self.dataset)).tolist()
 
         # add extra samples to make it evenly divisible
-        indices += indices[:(self.total_size - len(indices))]
+        padding_size = self.total_size - len(indices)
+        if padding_size and indices:
+            indices += (indices * math.ceil(padding_size / len(indices)))[:padding_size]
         assert len(indices) == self.total_size
 
         # subsample

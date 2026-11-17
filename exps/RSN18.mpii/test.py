@@ -135,7 +135,8 @@ def inference(model, data_loader, logger, device="cuda"):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--local_rank", type=int, default=0)
+    parser.add_argument("--local-rank", "--local_rank", dest="local_rank",
+                        type=int, default=int(os.environ.get("LOCAL_RANK", 0)))
     parser.add_argument("--iter", "-i", type=int, default=-1)
     args = parser.parse_args()
 
@@ -148,26 +149,27 @@ def main():
         dist.init_process_group(backend="nccl", init_method="env://")
         synchronize()
 
-    if is_main_process() and not os.path.exists(cfg.TEST_DIR):
-        os.mkdir(cfg.TEST_DIR)
+    os.makedirs(cfg.TEST_DIR, exist_ok=True)
     logger = get_logger(
             cfg.DATASET.NAME, cfg.TEST_DIR, args.local_rank, 'test_log.txt')
 
-    if args.iter == -1:
-        logger.info("Please designate one iteration.")
+    if args.iter < 0:
+        parser.error('Please designate one iteration with -i')
 
     model = RSN(cfg)
     device = torch.device(cfg.MODEL.DEVICE)
     model.to(cfg.MODEL.DEVICE)
 
     model_file = os.path.join(cfg.OUTPUT_DIR, "iter-{}.pth".format(args.iter))
+    if not os.path.isfile(model_file):
+        raise FileNotFoundError(model_file)
     if os.path.exists(model_file):
         state_dict = torch.load(
                 model_file, map_location=lambda storage, loc: storage)
         state_dict = state_dict['model']
         model.load_state_dict(state_dict)
 
-    data_loader = get_test_loader(cfg, num_gpus, args.local_rank, 'val',
+    data_loader = get_test_loader(cfg, num_gpus, dist.get_rank() if distributed else 0, 'val',
             is_dist=distributed)
 
     results = inference(model, data_loader, logger, device)

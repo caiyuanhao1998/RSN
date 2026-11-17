@@ -11,10 +11,13 @@ def make_optimizer(cfg, model, num_gpu):
                 lr=cfg.SOLVER.BASE_LR * num_gpu,
                 betas=(0.9, 0.999), eps=1e-08,
                 weight_decay=cfg.SOLVER.WEIGHT_DECAY)
-    elif cfg.OPTIMIZER == 'SGD':
+    elif cfg.SOLVER.OPTIMIZER == 'SGD':
         optimizer = optim.SGD(model.parameters(), lr=cfg.SOLVER.BASE_LR,
                 momentum=cfg.SOLVER.MOMENTUM,
                 weight_decay=cfg.SOLVER.WEIGHT_DECAY)
+
+    else:
+        raise ValueError('Unsupported optimizer: {}'.format(cfg.SOLVER.OPTIMIZER))
 
     return optimizer
 

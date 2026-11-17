@@ -39,7 +39,7 @@ class conv_bn_relu(nn.Module):
                 self.conv, self.bn, self.relu, self.has_bn, self.has_relu)
 
         if self.efficient:
-            x = checkpoint(func, x)
+            x = checkpoint(func, x, use_reentrant=False)
         else:
             x = func(x)
 
