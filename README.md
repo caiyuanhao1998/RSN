@@ -1,8 +1,14 @@
 # Learning Delicate Local Representations for Multi-Person Pose Estimation (ECCV 2020 Spotlight)
-[![winner](https://img.shields.io/badge/Winner-COCO_2019_Keypoint_Challenge-179bd3)](http://cocodataset.org/#keypoints-leaderboard)
-[![bpa](https://img.shields.io/badge/COCO-Best_Paper_Award-179bd3)](https://github.com/caiyuanhao1998/RSN/blob/master/figures/2019_best_paper.png)
-[![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2003.04030)
-[![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-179bd3)](https://zhuanlan.zhihu.com/p/112297707)
+
+[![Hugging Face models](figures/badges/huggingface-models.svg)](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X)
+[![Online Demo](figures/badges/online-demo.svg)](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X)
+[![Project Page](figures/badges/project-page.svg)](https://caiyuanhao1998.github.io/RSN-Project/)
+[![Training](figures/badges/training.svg)](projects/rsn_rtmpose/TRAINING.md)
+
+[![arXiv paper](https://img.shields.io/badge/arXiv-RSN-B31B1B)](https://arxiv.org/abs/2003.04030)
+[![2019 COCO Keypoint Challenge winner](https://img.shields.io/badge/COCO_2019_Keypoints-Winner-FF5797)](https://cocodataset.org/#keypoints-leaderboard)
+[![Best Paper Award](https://img.shields.io/badge/COCO_2019-Best_Paper-FF5797)](https://github.com/caiyuanhao1998/RSN/blob/master/figures/2019_best_paper.png)
+[![知乎解读](https://img.shields.io/badge/%E7%9F%A5%E4%B9%8E%E8%A7%A3%E8%AF%BB-RSN-0084FF)](https://zhuanlan.zhihu.com/p/112297707)
 
 *This is a pytorch realization of [Residual Steps Network][11] **which won 2019 COCO Keypoint Challenge and ranks 1st place on both COCO test-dev and test-challenge datasets as shown in [COCO leaderboard][1]**.
 
@@ -11,8 +17,6 @@
 </div>
 
 ## RSN + RTMPose-X
-
-[Checkpoint and model card](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Online Gradio demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/) · [Single-file training](projects/rsn_rtmpose/TRAINING.md)
 
 The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals and flip inference, up **0.306 AP points** over the reproduced RTMPose-X. The video pipeline uses YOLOX-S with the released checkpoint.
 

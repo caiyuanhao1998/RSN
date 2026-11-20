@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="20" viewBox="0 0 120 20" role="img" aria-labelledby="title">
+  <title id="title">Project Page · RSN</title>
+  <defs>
+    <clipPath id="corners"><rect width="120" height="20" rx="3"/></clipPath>
+    <linearGradient id="shade" x2="0" y2="100%">
+      <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+      <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#corners)">
+    <rect width="82" height="20" fill="#555"/>
+    <rect x="82" width="38" height="20" fill="#ffd21e"/>
+    <rect width="120" height="20" fill="url(#shade)"/>
+  </g>
+  <g text-anchor="middle" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" font-size="11" text-rendering="geometricPrecision">
+    <text x="41" y="15" fill="#010101" fill-opacity=".3" aria-hidden="true">Project Page</text>
+    <text x="41" y="14" fill="#fff">Project Page</text>
+    <text x="101" y="14" fill="#201a08">RSN</text>
+  </g>
+</svg>
