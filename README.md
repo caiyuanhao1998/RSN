@@ -1,6 +1,6 @@
-<h1 align="center">Learning Delicate Local Representations for Multi-Person Pose Estimation</h1>
+<h3 align="center">Learning Delicate Local Representations for Multi-Person Pose Estimation</h3>
 
-<p align="center"><b>RSN · ECCV 2020 Spotlight</b></p>
+<p align="center"><b>ECCV 2020 Spotlight</b></p>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2003.04030"><img src="https://img.shields.io/badge/arXiv-RSN-B31B1B" alt="arXiv paper"></a>
@@ -9,10 +9,9 @@
   <a href="https://huggingface.co/spaces/CaiYuanhao/RSN"><img src="figures/badges/online-demo.svg" alt="Online Demo"></a><br>
   <a href="https://caiyuanhao1998.github.io/RSN-Project/coco-leaderboard-2019.html"><img src="https://img.shields.io/badge/COCO_2019_Keypoints-Winner-FF5797" alt="COCO 2019 Keypoint Challenge winner"></a>
   <a href="figures/2019_best_paper.png"><img src="https://img.shields.io/badge/COCO_2019-Best_Paper-FF5797" alt="Best Paper Award"></a>
-  <a href="https://zhuanlan.zhihu.com/p/112297707"><img src="https://img.shields.io/badge/Zhihu-Chinese%20Summary-0084FF" alt="知乎解读"></a>
+  <a href="https://zhuanlan.zhihu.com/p/112297707"><img src="https://img.shields.io/badge/Zhihu-知乎中文解读-0084FF" alt="知乎解读"></a>
 </p>
 
-Residual Steps Network (RSN) aggregates features at the same spatial resolution to localize human keypoints. The Pose Refine Machine (PRM) further refines those predictions.
 
 <p align="center">
   <img width="16.66%"
