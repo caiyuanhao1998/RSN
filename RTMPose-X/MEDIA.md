@@ -18,10 +18,10 @@ DVIDS lists the following U.S. military footage as public domain. [DVIDS copyrig
 
 ## Online demo videos
 
-Each example shows a continuous shot at 24 frames per second. The thumbnail is taken from the same excerpt.
+The online demo uses short, continuous excerpts for CPU inference. The thumbnail is taken from the same excerpt.
 
-| Sport | Start in original | Duration | Source |
-| --- | ---: | ---: | --- |
-| Pickleball doubles | 19.25 s | 12 s | [DVIDS, Staff Sgt. Dean Johnson](https://www.dvidshub.net/video/944593/marne-week-2024-pickleball-b-roll-3rd-cab-vs-92-eng-bn) |
-| Soccer | 124.05 s | 10.5 s | [DVIDS, Derika Upshaw](https://www.dvidshub.net/video/972336/us-armed-forces-army-vs-air-force-soccer-tournament) |
-| Volleyball | 122 s | 12 s | [DVIDS, Jun Seo Lee](https://www.dvidshub.net/video/967191/katusa-friendship-week-volleyball-ssireum-competition-b-roll) |
+| Sport | Start in original | Duration | FPS | Source |
+| --- | ---: | ---: | ---: | --- |
+| Pickleball doubles | 26 s | 5 s | 12 | [DVIDS, Staff Sgt. Dean Johnson](https://www.dvidshub.net/video/944593/marne-week-2024-pickleball-b-roll-3rd-cab-vs-92-eng-bn) |
+| Soccer | 130.5 s | 4 s | 10 | [DVIDS, Derika Upshaw](https://www.dvidshub.net/video/972336/us-armed-forces-army-vs-air-force-soccer-tournament) |
+| Volleyball | 123.45 s | 3 s | 10 | [DVIDS, Jun Seo Lee](https://www.dvidshub.net/video/967191/katusa-friendship-week-volleyball-ssireum-competition-b-roll) |
