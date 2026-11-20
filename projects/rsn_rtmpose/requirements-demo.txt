@@ -1,0 +1,10 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.13.0+cpu
+gradio==5.50.0
+huggingface_hub==0.36.0
+imageio-ffmpeg==0.6.0
+numpy==2.4.6
+onnxruntime==1.32.0
+opencv-python-headless==4.11.0.86
+pycocotools==2.0.11
+requests==2.34.2

@@ -1,0 +1,5 @@
+RTMPose/CSPNeXt/RTMCC reference implementation: Copyright (c) OpenMMLab.
+Source: https://github.com/open-mmlab/mmpose
+Pinned reference commit: 759b39c13fea6ba094afc1fa932f51dc1b11cbf9
+Apache License 2.0: see LICENSE.openmmlab.
+RSN residual-step topology and PRM are based on this repository's MIT-licensed RSN implementation.

@@ -10,6 +10,18 @@
 <p align="center"> <img src="figures/2019_winner.png" width="410px">  <img src="figures/2019_best_paper.png" width="410px"></p>
 </div>
 
+## RSN + RTMPose-X
+
+[Checkpoint and model card](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Online Gradio demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/) · [Single-file training](projects/rsn_rtmpose/TRAINING.md)
+
+The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals and flip inference, up **0.306 AP points** over the reproduced RTMPose-X. The video pipeline uses YOLOX-S with the released checkpoint.
+
+| Basketball | Volleyball | Soccer |
+| :---: | :---: | :---: |
+| <img src="projects/rsn_rtmpose/assets/basketball.gif" alt="Multi-person pose overlays on basketball" width="280"> | <img src="projects/rsn_rtmpose/assets/volleyball.gif" alt="Multi-person pose overlays on volleyball" width="280"> | <img src="projects/rsn_rtmpose/assets/soccer.gif" alt="Multi-person pose overlays on soccer" width="280"> |
+
+[Inference and benchmarks](projects/rsn_rtmpose) · [MP4 downloads and footage credits](projects/rsn_rtmpose/MEDIA.md)
+
 #### News
 - **2020.09 :** Our RSN has been integrated into the great [MMPose](https://github.com/open-mmlab/mmpose) framework. Thanks to their effort. Welcome to use their [codebase](https://github.com/open-mmlab/mmpose) with their [pre-trained model zoo](https://mmpose.readthedocs.io/en/latest/model_zoo_papers/backbones.html#rsn-eccv-2020). ⭐
 - **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2020 :rocket: 
