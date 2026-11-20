@@ -6,6 +6,7 @@ from tempfile import NamedTemporaryFile
 
 import cv2
 import gradio as gr
+from gradio.utils import get_upload_folder
 import torch
 
 from pipeline import PosePipeline, draw_poses, process_video
@@ -63,7 +64,9 @@ def estimate_video(video, person_score, joint_score, show_boxes, flip, max_side,
         raise gr.Error("Upload a video or select an example.")
     progress(0, desc="Loading pose estimator")
     pipeline = get_pipeline()
-    with NamedTemporaryFile(suffix=".mp4", prefix="rsn-pose-", delete=False) as handle:
+    cache = Path(get_upload_folder())
+    cache.mkdir(parents=True, exist_ok=True)
+    with NamedTemporaryFile(dir=cache, suffix=".mp4", prefix="rsn-pose-", delete=False) as handle:
         output = Path(handle.name)
 
     def report(fraction):
@@ -79,8 +82,7 @@ def estimate_video(video, person_score, joint_score, show_boxes, flip, max_side,
 
 
 def build_demo():
-    theme = gr.themes.Soft(primary_hue=gr.themes.colors.teal, neutral_hue=gr.themes.colors.slate)
-    with gr.Blocks(theme=theme, css=CSS, title="RSN + RTMPose-X", delete_cache=(3600, 86400)) as demo:
+    with gr.Blocks(title="RSN + RTMPose-X", delete_cache=(3600, 86400)) as demo:
         gr.HTML(
             '<header id="pose-heading"><h1>RSN + RTMPose-X</h1>'
             '<p>Multi-person pose estimation for images and video.</p>'
@@ -128,4 +130,5 @@ def build_demo():
 demo = build_demo()
 
 if __name__ == "__main__":
-    demo.launch()
+    theme = gr.themes.Soft(primary_hue=gr.themes.colors.teal, neutral_hue=gr.themes.colors.slate)
+    demo.launch(theme=theme, css=CSS)

@@ -23,6 +23,11 @@ The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals a
 [Inference and benchmarks](projects/rsn_rtmpose) · [MP4 downloads and footage credits](projects/rsn_rtmpose/MEDIA.md)
 
 #### News
+
+- **2026.11.20** · We released **RSN + RTMPose-X** with 79.124422 AP on COCO val2017, a single training entry point for COCO and MPII, and image and video demos. [Weights](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Training](projects/rsn_rtmpose/TRAINING.md) · [Demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/)
+- **2026.11.20** · We upgraded the demo to Gradio 6.16.0 for the reported dependency fixes. Rendered videos now use the app's managed cache so they can be cleaned up automatically. [Dependabot update](https://github.com/caiyuanhao1998/RSN/pull/38)
+- **2026.11.20** · MPII evaluation now prints plain numeric PCKh scores with NumPy 2. [Runtime fixes](LOCAL_SETUP.md#fixes)
+- **2026.11.17** · We updated the PyTorch and CUDA dependencies, restricted checkpoint loading to weights, and fixed distributed training, checkpoint resume, and COCO and MPII evaluation edge cases. [Runtime fixes](LOCAL_SETUP.md#fixes) · [Dependency update](https://github.com/caiyuanhao1998/RSN/pull/37)
 - **2020.09 :** Our RSN has been integrated into the great [MMPose](https://github.com/open-mmlab/mmpose) framework. Thanks to their effort. Welcome to use their [codebase](https://github.com/open-mmlab/mmpose) with their [pre-trained model zoo](https://mmpose.readthedocs.io/en/latest/model_zoo_papers/backbones.html#rsn-eccv-2020). ⭐
 - **2020.07 :** Our paper has been accepted as Spotlight by ECCV 2020 :rocket: 
 - **2019.09 :** Our work won the **First place** and **Best Paper Award** in COCO 2019 Keypoint Challenge :trophy: 

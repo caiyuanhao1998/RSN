@@ -147,7 +147,7 @@ class MPIIDataset(JointsDataset):
             ('Mean', np.sum(PCKh * jnt_ratio)),
             ('Mean@0.1', np.sum(pckAll[10, :] * jnt_ratio))
         ]
-        name_value = OrderedDict(name_value)
+        name_value = OrderedDict((name, float(value)) for name, value in name_value)
 
         print(name_value)
 

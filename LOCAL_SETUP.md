@@ -49,6 +49,7 @@ TMPDIR=/data/cyh23/rsn-repro/tmp python -m pip install --no-cache-dir \
 - Made activation checkpointing's `use_reentrant` choice explicit for current PyTorch.
 - Made missing evaluation checkpoints fail explicitly instead of evaluating random weights silently.
 - Corrected MPII `Mean@0.1` to use threshold 0.10 rather than 0.11, with a boundary regression test.
+- Kept MPII evaluation logs in plain numeric form with NumPy 2.
 
 The model architectures and original full-training schedules are preserved. Training now accepts `--max-iters`, `--batch-size`, `--num-workers`, and `--output-dir` for bounded runtime checks.
 
