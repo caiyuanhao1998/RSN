@@ -3,7 +3,6 @@
 [![Hugging Face models](figures/badges/huggingface-models.svg)](https://huggingface.co/CaiYuanhao/RSN)
 [![Online Demo](figures/badges/online-demo.svg)](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X)
 [![Project Page](figures/badges/project-page.svg)](https://caiyuanhao1998.github.io/RSN-Project/)
-[![Training](figures/badges/training.svg)](RTMPose-X/TRAINING.md)
 
 [![arXiv paper](https://img.shields.io/badge/arXiv-RSN-B31B1B)](https://arxiv.org/abs/2003.04030)
 [![2019 COCO Keypoint Challenge winner](https://img.shields.io/badge/COCO_2019_Keypoints-Winner-FF5797)](https://cocodataset.org/#keypoints-leaderboard)

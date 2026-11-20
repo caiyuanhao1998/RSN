@@ -24,6 +24,8 @@ python RTMPose-X/app.py
 
 The pipeline downloads the published weights and official YOLOX-S ONNX detector on first use. It batches person crops and selects CUDA for pose inference when available. Add `--device cpu`, `--show-boxes`, or `--flip` as needed. The video CLI streams frames to a downloadable H.264 MP4. The pose overlay is computed independently for each frame. [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX)
 
+The demo header shows completed image and video estimates for today and the last 30 calendar days in Pacific time. For a self-hosted demo, set `RSN_USAGE_DIR` to an existing writable, persistent directory. The Space mounts a private bucket at `/mnt/rsn-usage` and stores one anonymous marker per completed estimate.
+
 The Python interface takes OpenCV BGR frames and returns the bounding box, detection confidence, and scored COCO joints for each person.
 
 ```python

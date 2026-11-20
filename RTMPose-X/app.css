@@ -23,6 +23,33 @@
     letter-spacing: -.035em;
     font-weight: 700;
 }
+.pose-heading-row, .pose-usage {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.pose-heading-row { justify-content: space-between; gap: 7px 16px; }
+.pose-usage {
+    justify-content: flex-end;
+    gap: 6px;
+    margin-inline-start: auto;
+}
+.pose-usage > span {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    padding: 5px 9px;
+    border: 1px solid var(--pose-line);
+    border-radius: 999px;
+    color: var(--pose-muted);
+    background: var(--block-background-fill);
+    font-size: 12px;
+    white-space: nowrap;
+}
+.pose-usage strong {
+    color: var(--body-text-color);
+    font-variant-numeric: tabular-nums;
+}
 .pose-meta, .pose-meta nav {
     display: flex;
     flex-wrap: wrap;

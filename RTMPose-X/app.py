@@ -10,6 +10,7 @@ from gradio.utils import get_upload_folder
 import torch
 
 from pipeline import MODEL_REPO, PosePipeline, draw_poses, process_video
+from usage_stats import USAGE_DIR, record_success, usage_counts
 
 ROOT = Path(__file__).resolve().parent
 EXAMPLES = ROOT / "examples"
@@ -38,10 +39,11 @@ def estimate_image(image, person_score, joint_score, show_boxes, flip):
         raise gr.Error("Upload an image or select an example.")
     frame = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     poses = get_pipeline().predict(frame, person_score, flip)
-    result = draw_poses(frame, poses, joint_score, show_boxes)
+    result = cv2.cvtColor(draw_poses(frame, poses, joint_score, show_boxes), cv2.COLOR_BGR2RGB)
     count = len(poses)
     message = "1 person detected." if count == 1 else f"{count} people detected."
-    return cv2.cvtColor(result, cv2.COLOR_BGR2RGB), message
+    record_success()
+    return result, message
 
 
 def estimate_video(video, person_score, joint_score, show_boxes, flip, max_side, progress=gr.Progress()):
@@ -63,6 +65,7 @@ def estimate_video(video, person_score, joint_score, show_boxes, flip, max_side,
     except (ValueError, OSError, RuntimeError) as exc:
         output.unlink(missing_ok=True)
         raise gr.Error(str(exc)) from exc
+    record_success()
     return str(output), f"{stats['frames']} frames processed. Peak detections per frame {stats['max_people']}."
 
 
@@ -100,31 +103,47 @@ def clear_result():
     return None, ""
 
 
-def connect_media(fn, source, settings, result, controls, examples):
+def connect_media(fn, source, settings, result, controls, examples, heading):
     upload, run, status = controls
     inputs = [source, *settings]
     outputs = [result, status]
     immediate = dict(queue=False, show_progress="hidden", api_visibility="private")
     upload.upload(set_source, upload, [source, *outputs], **immediate)
     gr.on([source.input, source.clear], clear_result, outputs=outputs, **immediate)
-    run.click(fn, inputs, outputs, api_name=fn.__name__, concurrency_id="pose")
+    estimate = run.click(fn, inputs, outputs, api_name=fn.__name__, concurrency_id="pose")
+    estimate.success(refresh_heading, outputs=heading, **immediate)
     for button, path in examples:
         button.click(partial(set_source, path), outputs=[source, *outputs], **immediate)
+
+
+def render_heading(today=None, recent=None):
+    today_text = f"{today:,}" if today is not None else "—"
+    recent_text = f"{recent:,}" if recent is not None else "—"
+    note = ("Successful pose estimates in Pacific time"
+            if today is not None else "Usage counts are currently unavailable")
+    return (
+        '<header id="pose-heading"><div class="pose-heading-row">'
+        f'<h1>{TITLE}</h1>'
+        f'<div class="pose-usage" role="status" aria-label="Successful estimates" title="{note}">'
+        f'<span>Last 30 days <strong>{recent_text}</strong></span>'
+        f'<span>Today <strong>{today_text}</strong></span></div></div>'
+        '<div class="pose-meta"><p>Multi-person pose estimation</p><nav aria-label="Project resources">'
+        f'<a href="{SITE}" target="_blank" rel="noopener">Project page</a>'
+        f'<a href="{PAPER}" target="_blank" rel="noopener">Paper</a>'
+        f'<a href="{CODE}" target="_blank" rel="noopener">GitHub</a>'
+        f'<a href="{WEIGHTS}" target="_blank" rel="noopener">Weights</a></nav></div></header>'
+    )
+
+
+def refresh_heading():
+    return render_heading(*usage_counts())
 
 
 def build_demo():
     panel = dict(show_label=False, min_width=0, height="var(--pose-media-height)",
                  elem_classes="pose-media")
     with gr.Blocks(title=TITLE, fill_width=True, delete_cache=(3600, 86400)) as demo:
-        gr.HTML(
-            f'<header id="pose-heading"><h1>{TITLE}</h1><div class="pose-meta">'
-            '<p>Multi-person pose estimation</p><nav aria-label="Project resources">'
-            f'<a href="{SITE}" target="_blank" rel="noopener">Project page</a>'
-            f'<a href="{PAPER}" target="_blank" rel="noopener">Paper</a>'
-            f'<a href="{CODE}" target="_blank" rel="noopener">GitHub</a>'
-            f'<a href="{WEIGHTS}" target="_blank" rel="noopener">Weights</a></nav></div></header>',
-            apply_default_css=False, elem_id="pose-header",
-        )
+        heading = gr.HTML(render_heading(), apply_default_css=False, elem_id="pose-header")
         with gr.Tabs(elem_id="pose-tabs"):
             with gr.Tab("Image", elem_id="image-tab"):
                 image_examples = media_examples(sorted(EXAMPLES.glob("*.jpg")))
@@ -178,8 +197,9 @@ def build_demo():
                     boxes = gr.Checkbox(label="Show person boxes", scale=0, min_width=160)
                     flip = gr.Checkbox(label="Use flip inference", scale=0, min_width=160)
         options = [person, joint, boxes, flip]
-        connect_media(estimate_image, input_image, options, output_image, image_controls, image_examples)
-        connect_media(estimate_video, input_video, [*options, resolution], output_video, video_controls, video_examples)
+        connect_media(estimate_image, input_image, options, output_image, image_controls, image_examples, heading)
+        connect_media(estimate_video, input_video, [*options, resolution], output_video, video_controls, video_examples, heading)
+        demo.load(refresh_heading, outputs=heading, queue=False, show_progress="hidden", api_visibility="private")
     return demo.queue(default_concurrency_limit=1)
 
 
@@ -194,4 +214,9 @@ if __name__ == "__main__":
         button_primary_background_fill_dark="#ededed", button_primary_background_fill_hover_dark="white",
         button_primary_text_color_dark="#191919", button_primary_border_color_dark="#ededed",
     )
-    demo.launch(theme=theme, css_paths=ROOT / "app.css", footer_links=["api", "settings"])
+    demo.launch(
+        theme=theme,
+        css_paths=ROOT / "app.css",
+        footer_links=["api", "settings"],
+        blocked_paths=[str(USAGE_DIR)],
+    )

@@ -9,12 +9,12 @@
   </defs>
   <g clip-path="url(#corners)">
     <rect width="82" height="20" fill="#555"/>
-    <rect x="82" width="38" height="20" fill="#ffd21e"/>
+    <rect x="82" width="38" height="20" fill="#2EA44F"/>
     <rect width="120" height="20" fill="url(#shade)"/>
   </g>
   <g text-anchor="middle" font-family="Verdana, Geneva, DejaVu Sans, sans-serif" font-size="11" text-rendering="geometricPrecision">
     <text x="41" y="15" fill="#010101" fill-opacity=".3" aria-hidden="true">Project Page</text>
     <text x="41" y="14" fill="#fff">Project Page</text>
-    <text x="101" y="14" fill="#201a08">RSN</text>
+    <text x="101" y="14" fill="#fff">RSN</text>
   </g>
 </svg>
