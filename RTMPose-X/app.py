@@ -145,12 +145,14 @@ def build_demo():
                             elem_id="image-result", **panel,
                         )
             with gr.Tab("Video", elem_id="video-tab"):
-                video_examples = media_examples(sorted(EXAMPLES.glob("*.mp4")))
+                video_sources = sorted((EXAMPLES / "videos").glob("*.mp4"))
+                video_examples = media_examples(video_sources)
                 with gr.Row(elem_classes="pose-panels"):
                     with gr.Column(min_width=0, elem_classes="pose-pane"):
                         gr.HTML("<h2>Original video</h2>", apply_default_css=False)
                         input_video = gr.Video(
-                            value=EXAMPLES / "basketball.mp4", label="Original video",
+                            value=video_sources[0] if video_sources else None,
+                            label="Original video",
                             sources=["upload", "webcam"], interactive=True,
                             elem_id="video-source", **panel,
                         )

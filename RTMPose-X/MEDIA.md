@@ -15,3 +15,13 @@ DVIDS lists the following U.S. military footage as public domain. [DVIDS copyrig
 - Basketball by Seaman Latifah Choice, U.S. Navy. [NSF Diego Garcia hosts basketball game](https://www.dvidshub.net/video/989713/nsf-diego-garcia-hosts-basketball-game)
 - Volleyball by Jun Seo Lee, U.S. Army. [KATUSA Friendship Week Volleyball & Ssireum Competition (B-Roll)](https://www.dvidshub.net/video/967191/katusa-friendship-week-volleyball-ssireum-competition-b-roll)
 - Soccer by Derika Upshaw, U.S. Army. [U.S. Armed Forces Army vs. Air Force Soccer Tournament](https://www.dvidshub.net/video/972336/us-armed-forces-army-vs-air-force-soccer-tournament)
+
+## Online demo videos
+
+Each example shows a continuous shot at 24 frames per second. The thumbnail is taken from the same excerpt.
+
+| Sport | Start in original | Duration | Source |
+| --- | ---: | ---: | --- |
+| Pickleball doubles | 19.25 s | 12 s | [DVIDS, Staff Sgt. Dean Johnson](https://www.dvidshub.net/video/944593/marne-week-2024-pickleball-b-roll-3rd-cab-vs-92-eng-bn) |
+| Soccer | 124.05 s | 10.5 s | [DVIDS, Derika Upshaw](https://www.dvidshub.net/video/972336/us-armed-forces-army-vs-air-force-soccer-tournament) |
+| Volleyball | 122 s | 12 s | [DVIDS, Jun Seo Lee](https://www.dvidshub.net/video/967191/katusa-friendship-week-volleyball-ssireum-competition-b-roll) |
