@@ -2,7 +2,10 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 model_logs
-exps/*/log
+/*.coco/log
+/*.mpii/log
+/RTMPose-X/data/
+/RTMPose-X/checkpoints/
 dataset/*/images
 dataset/*/gt_json
 dataset/*/det_json

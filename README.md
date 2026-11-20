@@ -3,7 +3,7 @@
 [![Hugging Face models](figures/badges/huggingface-models.svg)](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X)
 [![Online Demo](figures/badges/online-demo.svg)](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X)
 [![Project Page](figures/badges/project-page.svg)](https://caiyuanhao1998.github.io/RSN-Project/)
-[![Training](figures/badges/training.svg)](projects/rsn_rtmpose/TRAINING.md)
+[![Training](figures/badges/training.svg)](RTMPose-X/TRAINING.md)
 
 [![arXiv paper](https://img.shields.io/badge/arXiv-RSN-B31B1B)](https://arxiv.org/abs/2003.04030)
 [![2019 COCO Keypoint Challenge winner](https://img.shields.io/badge/COCO_2019_Keypoints-Winner-FF5797)](https://cocodataset.org/#keypoints-leaderboard)
@@ -16,19 +16,27 @@
 <p align="center"> <img src="figures/2019_winner.png" width="410px">  <img src="figures/2019_best_paper.png" width="410px"></p>
 </div>
 
-## RSN + RTMPose-X
+## Models
 
-The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals and flip inference, up **0.306 AP points** over the reproduced RTMPose-X. The video pipeline uses YOLOX-S with the released checkpoint.
+| Model | Training data | Directory |
+| --- | --- | --- |
+| Res-18 | COCO | [Res18.coco](Res18.coco/) |
+| RSN-18 | COCO | [RSN18.coco](RSN18.coco/) |
+| RSN-18 | MPII | [RSN18.mpii](RSN18.mpii/) |
+| 4×RSN-18 | COCO | [4XRSN18.coco](4XRSN18.coco/) |
+| RSN + RTMPose-X | COCO + MPII | [RTMPose-X](RTMPose-X/) |
+
+RSN + RTMPose-X reaches **79.124422 AP** on COCO val2017 with H56 proposals and flip inference, up **0.306 AP points** over the reproduced RTMPose-X. The video pipeline uses YOLOX-S with the released checkpoint.
 
 | Basketball | Volleyball | Soccer |
 | :---: | :---: | :---: |
-| <img src="projects/rsn_rtmpose/assets/basketball.gif" alt="Multi-person pose overlays on basketball" width="280"> | <img src="projects/rsn_rtmpose/assets/volleyball.gif?v=ae454320d1ae" alt="Multi-person pose overlays on volleyball" width="280"> | <img src="projects/rsn_rtmpose/assets/soccer.gif" alt="Multi-person pose overlays on soccer" width="280"> |
+| <img src="RTMPose-X/assets/basketball.gif" alt="Multi-person pose overlays on basketball" width="280"> | <img src="RTMPose-X/assets/volleyball.gif?v=ae454320d1ae" alt="Multi-person pose overlays on volleyball" width="280"> | <img src="RTMPose-X/assets/soccer.gif" alt="Multi-person pose overlays on soccer" width="280"> |
 
-[Inference and benchmarks](projects/rsn_rtmpose) · [MP4 downloads and footage credits](projects/rsn_rtmpose/MEDIA.md)
+[Inference and benchmarks](RTMPose-X) · [MP4 downloads and footage credits](RTMPose-X/MEDIA.md)
 
 #### News
 
-- **2026.11.20** · We released **RSN + RTMPose-X** with 79.124422 AP on COCO val2017, a single training entry point for COCO and MPII, and an online demo with side-by-side input and pose predictions for both images and videos. [Weights](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Training](projects/rsn_rtmpose/TRAINING.md) · [Demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/)
+- **2026.11.20** · We released **RSN + RTMPose-X** with 79.124422 AP on COCO val2017, training code for COCO and MPII, and an online demo with side-by-side input and pose predictions for both images and videos. [Weights](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Training](RTMPose-X/TRAINING.md) · [Demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/)
 - **2026.11.20** · We upgraded the demo to Gradio 6.16.0 for the reported dependency fixes. Rendered videos now use the app's managed cache so they can be cleaned up automatically. [Dependabot update](https://github.com/caiyuanhao1998/RSN/pull/38)
 - **2026.11.20** · MPII evaluation now prints plain numeric PCKh scores with NumPy 2. [Runtime fixes](LOCAL_SETUP.md#fixes)
 - **2026.11.17** · We updated the PyTorch and CUDA dependencies, restricted checkpoint loading to weights, and fixed distributed training, checkpoint resume, and COCO and MPII evaluation edge cases. [Runtime fixes](LOCAL_SETUP.md#fixes) · [Dependency update](https://github.com/caiyuanhao1998/RSN/pull/37)
@@ -108,37 +116,18 @@ The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals a
 * We done all the experiments using our orginal DL-Platform, all results in our paper are reported on this DL-Platform. There are some differences between it and Pytorch.
 
 ## Repo Structure
-This repo is organized as following:
-```
-$RSN_HOME
-|-- cvpack
-|
-|-- dataset
-|   |-- COCO
-|   |   |-- det_json
-|   |   |-- gt_json
-|   |   |-- images
-|   |       |-- train2014
-|   |       |-- val2014
-|   |
-|   |-- MPII
-|       |-- det_json
-|       |-- gt_json
-|       |-- images
-|   
-|-- lib
-|   |-- models
-|   |-- utils
-|
-|-- exps
-|   |-- exp1
-|   |-- exp2
-|   |-- ...
-|
-|-- model_logs
-|
-|-- README.md
-|-- requirements.txt
+
+```text
+RSN/
+├── 4XRSN18.coco/
+├── RSN18.coco/
+├── RSN18.mpii/
+├── RTMPose-X/
+├── Res18.coco/
+├── cvpack/
+├── dataset/
+├── lib/
+└── model_logs/
 ```
 
 ## Quick Start
@@ -147,30 +136,15 @@ $RSN_HOME
 
 For the verified local Python/CUDA environment, dataset locations, runtime fixes, and reproducible smoke checks, see [LOCAL_SETUP.md](LOCAL_SETUP.md).
 
-1. Install the tested PyTorch 2.13.0 / torchvision 0.28.0 pair (CUDA 12.6 example):
- ```
- pip3 install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cu126
- ```
- Choose a matching CPU/CUDA build for your platform from the [PyTorch website][2].
+From the repository root in a Python 3.11 environment, install the dependencies and set the project import path. Choose the wheel index for your platform. [PyTorch installation](https://pytorch.org/)
 
-2. Clone this repo, and config **RSN_HOME** in **/etc/profile** or **~/.bashrc**, e.g.
- ```
- export RSN_HOME='/path/of/your/cloned/repo'
- export PYTHONPATH=$PYTHONPATH:$RSN_HOME
- ```
+```bash
+python -m pip install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cu126
+python -m pip install -r requirements.txt
+export RSN_HOME="$PWD"
+export PYTHONPATH="$RSN_HOME${PYTHONPATH:+:$PYTHONPATH}"
+```
 
-3. Install requirements:
- ```
- pip3 install -r requirements.txt
- ```
-
-4. Install COCOAPI referring to [cocoapi website][3], or:
- ```
- git clone https://github.com/cocodataset/cocoapi.git $RSN_HOME/lib/COCOAPI
- cd $RSN_HOME/lib/COCOAPI/PythonAPI
- make install
- ```
- 
 ### Dataset
 
 #### COCO
@@ -190,29 +164,23 @@ For the verified local Python/CUDA environment, dataset locations, runtime fixes
 3. Download detection result from [Google Drive][6] or [Baidu Drive][10] (code: fc51), and put it into **$RSN_HOME/dataset/MPII/det_json/**.
 
 
-### Log
-Create a directory to save logs and models:
-```
-mkdir $RSN_HOME/model_logs
+### Train
+
+Run the selected experiment from the repository root. For RSN-18 on COCO with eight GPUs, run
+
+```bash
+torchrun --standalone --nproc-per-node=8 RSN18.coco/train.py
 ```
 
-### Train
-Go to specified experiment repository, e.g.
-```
-cd $RSN_HOME/exps/RSN18.coco
-```
-and run:
-```
-python config.py -log
-python -m torch.distributed.launch --nproc_per_node=gpu_num train.py
-```
-the ***gpu_num*** is the number of gpus.
+For RSN + RTMPose-X, follow the [training command](RTMPose-X/TRAINING.md).
 
 ### Test
+
+Set the GPU count, model folder and saved iteration for your run.
+
+```bash
+torchrun --standalone --nproc-per-node=8 RSN18.coco/test.py -i 96000
 ```
-python -m torch.distributed.launch --nproc_per_node=gpu_num test.py -i iter_num
-```
-the ***gpu_num*** is the number of gpus, and ***iter_num*** is the iteration number you want to test.
 
 ## Citation
 Please considering citing our projects in your publications if they help your research.
@@ -234,8 +202,6 @@ Please considering citing our projects in your publications if they help your re
 
 
 [1]: http://cocodataset.org/#keypoints-leaderboard
-[2]: https://pytorch.org/
-[3]: https://github.com/cocodataset/cocoapi
 [4]: http://cocodataset.org/#download
 [5]: http://human-pose.mpi-inf.mpg.de/
 [6]: https://drive.google.com/open?id=14zW0YZ0A9kPMNt_wjBpQZg5xBiW5ecPd

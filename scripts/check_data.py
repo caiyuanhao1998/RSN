@@ -19,7 +19,7 @@ parser.add_argument('--experiment', choices=['RSN18.coco', 'RSN18.mpii'], requir
 parser.add_argument('--checkpoint', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args()
-sys.path.insert(0, str(ROOT / 'exps' / args.experiment))
+sys.path.insert(0, str(ROOT / args.experiment))
 from config import cfg
 from network import RSN
 from lib.utils.dataloader import get_train_loader, get_test_loader

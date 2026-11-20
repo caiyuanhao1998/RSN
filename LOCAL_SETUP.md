@@ -68,12 +68,12 @@ Check a model's CUDA forward/backward and finite gradients; repeat with `--effic
 CUDA_VISIBLE_DEVICES=7 python scripts/check_models.py --experiment RSN18.coco
 ```
 
-Supported experiments: `Res18.coco`, `RSN18.coco`, `4XRSN18.coco`, and `RSN18.mpii`.
+The experiment folders `Res18.coco`, `RSN18.coco`, `4XRSN18.coco`, and `RSN18.mpii` sit at the repository root. Existing `exps/` paths resolve through symbolic links.
 
 Run the real COCO training entrypoint and resume it:
 
 ```bash
-cd /home/ycai51/RSN/exps/RSN18.coco
+cd /home/ycai51/RSN/RSN18.coco
 CUDA_VISIBLE_DEVICES=7 OMP_NUM_THREADS=4 python train.py \
   --max-iters 40 --batch-size 32 --num-workers 4 \
   --output-dir /data/cyh23/rsn-repro/runs/RSN18.coco
@@ -88,7 +88,7 @@ Check two-GPU training:
 ```bash
 cd /home/ycai51/RSN
 CUDA_VISIBLE_DEVICES=5,7 OMP_NUM_THREADS=4 torchrun --standalone --nproc-per-node=2 \
-  exps/RSN18.coco/train.py --max-iters 5 --batch-size 4 --num-workers 2 \
+  RSN18.coco/train.py --max-iters 5 --batch-size 4 --num-workers 2 \
   --output-dir /data/cyh23/rsn-repro/runs/RSN18.coco-ddp
 ```
 

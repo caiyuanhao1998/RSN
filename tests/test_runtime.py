@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT))
 
 
 def load_experiment(name, module):
-    directory = ROOT / 'exps' / name
+    directory = ROOT / name
     previous = {key: sys.modules.pop(key, None) for key in ('config', 'network')}
     sys.path.insert(0, str(directory))
     try:

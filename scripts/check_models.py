@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--experiment', choices=['Res18.coco', 'RSN18.coco', '4XRSN18.coco', 'RSN18.mpii'], required=True)
 parser.add_argument('--efficient', action='store_true')
 args = parser.parse_args()
-sys.path.insert(0, str(ROOT / 'exps' / args.experiment))
+sys.path.insert(0, str(ROOT / args.experiment))
 from config import cfg
 import network
 

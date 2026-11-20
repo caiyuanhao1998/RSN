@@ -16,10 +16,10 @@ Native AP uses the full COCO val2017 split, H56 proposals, flip inference and OK
 Use a Python 3.11 environment. The demo requirements install CPU PyTorch. In a CUDA training environment, keep the CUDA build and install Gradio, Hugging Face Hub and imageio-ffmpeg alongside the training requirements.
 
 ```bash
-python -m pip install -r projects/rsn_rtmpose/requirements-demo.txt
-python projects/rsn_rtmpose/pipeline.py input.jpg poses.jpg
-python projects/rsn_rtmpose/pipeline.py input.mp4 poses.mp4
-python projects/rsn_rtmpose/app.py
+python -m pip install -r RTMPose-X/requirements-demo.txt
+python RTMPose-X/pipeline.py input.jpg poses.jpg
+python RTMPose-X/pipeline.py input.mp4 poses.mp4
+python RTMPose-X/app.py
 ```
 
 The pipeline downloads the published weights and official YOLOX-S ONNX detector on first use. It batches person crops and selects CUDA for pose inference when available. Add `--device cpu`, `--show-boxes`, or `--flip` as needed. The video CLI streams frames to a downloadable H.264 MP4. The pose overlay is computed independently for each frame. [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX)
@@ -36,10 +36,22 @@ poses = pipeline.predict(frame)
 cv2.imwrite("poses.jpg", draw_poses(frame, poses))
 ```
 
-Run the Python snippet from `projects/rsn_rtmpose` or add that directory to `PYTHONPATH`.
+Run the Python snippet from `RTMPose-X` or add that directory to `PYTHONPATH`.
 
-## Training and media
+## Training
 
-Use one training entry point for data preparation, initialization and all sequential COCO + MPII stages. [Training guide](TRAINING.md)
+Use the [training command and data instructions](TRAINING.md) for COCO and MPII.
 
-See the original source credits and downloadable pose overlays. [Sports videos and GIFs](MEDIA.md)
+## Evaluation
+
+Run from the repository root with the prepared data cache and the published checkpoint.
+
+```bash
+RSN_RTMPOSE_DATA=RTMPose-X/data torchrun --standalone --nproc-per-node=8 \
+  RTMPose-X/evaluate.py --checkpoint /path/to/rsn-rtmpose-x.pth \
+  --output model_logs/rtmpose-x-validation --batch-size 32 --workers 4 --amp fp16
+```
+
+## Media
+
+[Sports videos, GIFs and footage credits](MEDIA.md)

@@ -1,0 +1,39 @@
+{
+  "checkpoint": "rsn-rtmpose-x.pth",
+  "sha256": "942d0be0bf9779c2bbef88d2a91cccb6ba6e122ec5bd7c12b81ff26ce958de04",
+  "architecture": "rsn_highres",
+  "input_size_hw": [
+    384,
+    288
+  ],
+  "epoch": 6,
+  "native": {
+    "AP": 0.7912442223790209,
+    "AP50": 0.9158616179705453,
+    "AP75": 0.8565243589101192,
+    "APm": 0.750669807831669,
+    "APl": 0.8602587697507087,
+    "AR": 0.8349181360201511,
+    "AR50": 0.9494647355163728,
+    "AR75": 0.8912153652392947,
+    "ARm": 0.7915869980879541,
+    "ARl": 0.8981047937569675,
+    "samples": 104125,
+    "images": 3893,
+    "results": 73402,
+    "flip": true,
+    "amp": "fp16",
+    "seconds": 93.95397191680968,
+    "full_validation": true,
+    "deployment": false,
+    "bbox_protocol": "person_detections_H56"
+  },
+  "paired_latency": {
+    "latency_ms": 5.400960159301758,
+    "paired_reference_ms": 3.338265609741211,
+    "latency_ratio": 1.6178940775537782,
+    "backend": "PyTorch CUDA Graph FP16, fused Conv/BN, batch=1, no flip",
+    "device": "NVIDIA RTX A5000"
+  },
+  "reference_native_AP": 0.7881823654889539
+}
