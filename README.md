@@ -116,7 +116,7 @@ RSN_RTMPOSE_DATA="$eval_cache" torchrun --standalone --nproc-per-node=8 \
   --output model_logs/rtmpose-x-validation --batch-size 32 --workers 4 --amp fp16
 ```
 
-Evaluation uses H56 person detections and flip inference and writes `metrics.json` under `--output`. See the [COCO and MPII paper benchmarks](https://caiyuanhao1998.github.io/RSN-Project/#paper-results).
+Evaluation uses H56 person detections and flip inference and writes `metrics.json` under `--output`. See the [COCO val2017 model comparison](RTMPose-X/README.md#coco-val2017) and the [COCO and MPII paper benchmarks](https://caiyuanhao1998.github.io/RSN-Project/#paper-results).
 
 ### Inference on images and videos
 

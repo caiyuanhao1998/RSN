@@ -4,12 +4,15 @@ A top-down multi-person pose model with a high-resolution residual-step refiner,
 
 [Model and checkpoint](https://huggingface.co/CaiYuanhao/RSN) · [Online demo](https://huggingface.co/spaces/CaiYuanhao/RSN) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/) · [RSN paper](https://arxiv.org/abs/2003.04030)
 
-| Model | COCO val2017 AP | Pose network latency |
-| --- | ---: | ---: |
-| Official RTMPose-X | 78.818237 | 3.338 ms |
-| RSN + RTMPose-X | **79.124422** | 5.401 ms |
+## COCO val2017
 
-Native AP uses the full COCO val2017 split, H56 proposals, flip inference and OKS NMS. Latency uses paired single-person FP16 CUDA Graph runs with fused Conv/BN on the same RTX A5000. [Recorded metrics](results/release.json)
+| Model | AP | AP50 | AP75 | AR |
+| --- | ---: | ---: | ---: | ---: |
+| RTMPose-X (reproduced) | 78.818 | 91.475 | 85.176 | 83.264 |
+| RSN + RTMPose-X | **79.124** | **91.586** | **85.652** | **83.492** |
+| Gain (points) | +0.306 | +0.111 | +0.476 | +0.228 |
+
+Both models use the full COCO val2017 split with H56 person detections, flip inference, and OKS NMS. [Baseline metrics](results/baseline_official.json) · [Release metrics](results/release.json)
 
 ## Inference
 

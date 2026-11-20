@@ -28,12 +28,11 @@
     "deployment": false,
     "bbox_protocol": "person_detections_H56"
   },
-  "paired_latency": {
-    "latency_ms": 5.400960159301758,
-    "paired_reference_ms": 3.338265609741211,
-    "latency_ratio": 1.6178940775537782,
-    "backend": "PyTorch CUDA Graph FP16, fused Conv/BN, batch=1, no flip",
-    "device": "NVIDIA RTX A5000"
-  },
-  "reference_native_AP": 0.7881823654889539
+  "reference_native_AP": 0.7881823654889539,
+  "gain_points": {
+    "AP": 0.3061856890066994,
+    "AP50": 0.11118058441967893,
+    "AP75": 0.476111297007209,
+    "AR": 0.2282745591939528
+  }
 }
