@@ -52,24 +52,26 @@
     font-weight: 600;
 }
 #pose-tabs [role="tabpanel"] { padding: 14px 0 0; border: 0; }
-#pose-tabs .pose-toolbar, #pose-tabs .pose-samples, #pose-tabs .pose-actions {
-    align-items: center;
-    min-width: 0;
-}
-#pose-tabs .pose-toolbar { justify-content: space-between; gap: 10px 24px; }
-#pose-tabs .pose-samples, #pose-tabs .pose-actions { gap: 6px; width: auto; flex: 0 1 auto; }
+#pose-tabs .pose-samples { align-items: center; min-width: 0; gap: 6px; }
 #pose-tabs .pose-samples-label { width: auto; flex: 0 0 auto; margin-right: 4px; color: var(--pose-muted); font-size: 12px; }
-#pose-tabs .pose-toolbar button { flex: 0 0 auto; min-width: max-content !important; white-space: nowrap; border-radius: 6px; box-shadow: none; font-size: 13px; }
-.pose-toolbar .pose-example, .pose-toolbar .pose-upload {
+#pose-tabs .pose-example {
+    flex: 0 0 auto;
+    min-width: max-content !important;
+    min-height: 36px;
+    white-space: nowrap;
+    gap: 7px;
+    padding: 4px 9px 4px 4px;
     border: 1px solid var(--pose-line);
+    border-radius: 6px;
+    box-shadow: none;
     background: var(--block-background-fill);
     color: var(--body-text-color);
+    font-size: 13px;
+    font-weight: 400;
 }
-.pose-toolbar .pose-example:hover, .pose-toolbar .pose-upload:hover { background: var(--background-fill-secondary); }
-.pose-toolbar .pose-example { gap: 7px; padding: 4px 9px 4px 4px; min-height: 36px; font-weight: 400; }
+#pose-tabs .pose-example:hover { background: var(--background-fill-secondary); }
 .pose-example img { flex: none; margin: 0; padding: 0; width: 38px; height: 26px; border-radius: 3px; object-fit: cover; }
-.pose-toolbar .pose-upload, .pose-toolbar .pose-run { min-height: 38px; padding: 7px 15px; }
-.pose-toolbar button:focus-visible, #pose-heading a:focus-visible {
+.pose-samples button:focus-visible, #pose-controls button:focus-visible, #pose-heading a:focus-visible {
     outline: 2px solid var(--body-text-color);
     outline-offset: 2px;
 }
@@ -101,22 +103,53 @@
     height: 100% !important;
     max-height: 100%;
 }
-.pose-status { color: var(--pose-muted); font-size: 13px; }
-.pose-status:empty, .pose-status:not(:has(p)) { display: none; }
-#pose-settings {
+#pose-controls {
+    width: 100%;
+    gap: 0;
     padding: 0;
     border: 1px solid var(--pose-line);
     border-radius: 7px;
-    background: var(--background-fill-secondary);
+    background: var(--block-background-fill);
     box-shadow: none;
 }
-#pose-settings > button { padding: 10px 13px; font-size: 13px; font-weight: 600; }
+#pose-controls .pose-mode-controls {
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid var(--pose-line);
+}
+.gradio-container:has(#video-tab-button[aria-selected="true"]) #image-controls,
+.gradio-container:not(:has(#video-tab-button[aria-selected="true"])) #video-controls,
+.gradio-container:not(:has(#video-tab-button[aria-selected="true"])) #video-resolution {
+    display: none !important;
+}
+#pose-controls .pose-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+#pose-controls .pose-actions > button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 40px;
+    border-radius: 6px;
+    box-shadow: none;
+    font-size: 13px;
+}
+#pose-controls .pose-upload {
+    border: 1px solid var(--pose-line);
+    background: var(--block-background-fill);
+    color: var(--body-text-color);
+}
+#pose-controls .pose-upload:hover { background: var(--background-fill-secondary); }
+#pose-controls .pose-status { padding: 0; color: var(--pose-muted); font-size: 13px; }
+.pose-status:not(:has(p)) { display: none; }
+#pose-settings { padding: 0; border: 0; border-radius: 0 0 7px 7px; background: transparent; box-shadow: none; }
+#pose-settings > button { padding: 10px 12px; font-weight: 600; }
 #pose-settings > div:last-child > .column { padding: 0 12px 12px; }
 #pose-settings .form { box-shadow: none; }
 
 @media (max-width: 760px) {
     .gradio-container > .main { padding: 16px 14px 24px !important; }
-    #pose-tabs .pose-toolbar { row-gap: 10px; }
     #pose-tabs .pose-panels { gap: 14px; }
 }
 @media (max-width: 640px) {
@@ -124,10 +157,8 @@
     .pose-meta nav { border: 0; padding: 0; }
     #pose-tabs .pose-samples { width: 100%; gap: 4px 6px; }
     #pose-tabs .pose-samples > .pose-samples-label { flex-basis: 100%; margin: 0; }
-    #pose-tabs .pose-actions { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #pose-tabs .pose-toolbar .pose-actions > button { width: 100% !important; min-width: 0 !important; }
     #pose-tabs .pose-panels { flex-direction: column; }
     #pose-tabs .pose-pane { width: 100%; flex: none; }
-    #pose-tabs .pose-toolbar .pose-example { gap: 4px; padding-right: 6px; font-size: 12px; }
+    #pose-tabs .pose-example { gap: 4px; padding-right: 6px; font-size: 12px; }
     .pose-example img { width: 29px; height: 23px; }
 }

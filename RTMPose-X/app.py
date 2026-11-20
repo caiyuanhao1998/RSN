@@ -1,4 +1,4 @@
-"""Gradio interface for RSN + RTMPose-X image and video inference."""
+"""Gradio interface for RSN image and video inference."""
 from functools import lru_cache, partial
 import os
 from pathlib import Path
@@ -13,6 +13,7 @@ from pipeline import MODEL_REPO, PosePipeline, draw_poses, process_video
 
 ROOT = Path(__file__).resolve().parent
 EXAMPLES = ROOT / "examples"
+TITLE = "RSN · ECCV 2020"
 CODE = "https://github.com/caiyuanhao1998/RSN"
 WEIGHTS = f"https://huggingface.co/{MODEL_REPO}"
 SITE = "https://caiyuanhao1998.github.io/RSN-Project/"
@@ -65,26 +66,30 @@ def estimate_video(video, person_score, joint_score, show_boxes, flip, max_side,
     return str(output), f"{stats['frames']} frames processed. Peak detections per frame {stats['max_people']}."
 
 
-def media_toolbar(kind, sources):
+def media_examples(sources):
     examples = []
-    with gr.Row(elem_classes="pose-toolbar"):
-        with gr.Row(elem_classes="pose-samples"):
-            gr.HTML('<span>Examples</span>', apply_default_css=False, elem_classes="pose-samples-label")
-            for path in sources:
-                thumbnail = path.with_suffix(".jpg")
-                button = gr.Button(
-                    path.stem.title(), icon=thumbnail if thumbnail.is_file() else None,
-                    size="sm", scale=0, min_width=0, elem_classes="pose-example",
-                )
-                examples.append((button, path))
+    with gr.Row(elem_classes="pose-samples"):
+        gr.HTML('<span>Examples</span>', apply_default_css=False, elem_classes="pose-samples-label")
+        for path in sources:
+            thumbnail = path.with_suffix(".jpg")
+            button = gr.Button(
+                path.stem.title(), icon=thumbnail if thumbnail.is_file() else None,
+                size="sm", scale=0, min_width=0, elem_classes="pose-example",
+            )
+            examples.append((button, path))
+    return examples
+
+
+def media_controls(kind):
+    with gr.Column(min_width=0, elem_id=f"{kind}-controls", elem_classes="pose-mode-controls"):
         with gr.Row(elem_classes="pose-actions"):
             upload = gr.UploadButton(
-                f"Upload {kind}", file_types=[kind], size="md", scale=0, min_width=0,
+                f"Upload {kind}", file_types=[kind], size="md", min_width=0,
                 elem_classes="pose-upload",
             )
-            run = gr.Button("Estimate poses", variant="primary", size="md", scale=0,
-                            min_width=0, elem_classes="pose-run")
-    return upload, run, examples
+            run = gr.Button("Estimate poses", variant="primary", size="md", min_width=0)
+        status = gr.Markdown(elem_classes="pose-status")
+    return upload, run, status
 
 
 def set_source(path):
@@ -95,8 +100,8 @@ def clear_result():
     return None, ""
 
 
-def connect_media(fn, toolbar, source, settings, result, status):
-    upload, run, examples = toolbar
+def connect_media(fn, source, settings, result, controls, examples):
+    upload, run, status = controls
     inputs = [source, *settings]
     outputs = [result, status]
     immediate = dict(queue=False, show_progress="hidden", api_visibility="private")
@@ -104,17 +109,15 @@ def connect_media(fn, toolbar, source, settings, result, status):
     gr.on([source.input, source.clear], clear_result, outputs=outputs, **immediate)
     run.click(fn, inputs, outputs, api_name=fn.__name__, concurrency_id="pose")
     for button, path in examples:
-        selected = button.click(partial(set_source, path), outputs=[source, *outputs], **immediate)
-        selected.success(fn, inputs, outputs, api_visibility="private", concurrency_id="pose")
+        button.click(partial(set_source, path), outputs=[source, *outputs], **immediate)
 
 
 def build_demo():
-    previews = EXAMPLES / "previews"
     panel = dict(show_label=False, min_width=0, height="var(--pose-media-height)",
                  elem_classes="pose-media")
-    with gr.Blocks(title="RSN + RTMPose-X", fill_width=True, delete_cache=(3600, 86400)) as demo:
+    with gr.Blocks(title=TITLE, fill_width=True, delete_cache=(3600, 86400)) as demo:
         gr.HTML(
-            '<header id="pose-heading"><h1>RSN + RTMPose-X</h1><div class="pose-meta">'
+            f'<header id="pose-heading"><h1>{TITLE}</h1><div class="pose-meta">'
             '<p>Multi-person pose estimation</p><nav aria-label="Project resources">'
             f'<a href="{SITE}" target="_blank" rel="noopener">Project page</a>'
             f'<a href="{PAPER}" target="_blank" rel="noopener">Paper</a>'
@@ -124,7 +127,7 @@ def build_demo():
         )
         with gr.Tabs(elem_id="pose-tabs"):
             with gr.Tab("Image", elem_id="image-tab"):
-                image_toolbar = media_toolbar("image", sorted(EXAMPLES.glob("*.jpg")))
+                image_examples = media_examples(sorted(EXAMPLES.glob("*.jpg")))
                 with gr.Row(elem_classes="pose-panels"):
                     with gr.Column(min_width=0, elem_classes="pose-pane"):
                         gr.HTML("<h2>Original image</h2>", apply_default_css=False)
@@ -137,13 +140,12 @@ def build_demo():
                     with gr.Column(min_width=0, elem_classes="pose-pane"):
                         gr.HTML("<h2>Estimated poses</h2>", apply_default_css=False)
                         output_image = gr.Image(
-                            value=str(previews / "basketball.jpg"), label="Estimated poses",
+                            label="Estimated poses",
                             interactive=False, buttons=["fullscreen", "download"],
                             elem_id="image-result", **panel,
                         )
-                image_status = gr.Markdown(elem_classes="pose-status")
             with gr.Tab("Video", elem_id="video-tab"):
-                video_toolbar = media_toolbar("video", sorted(EXAMPLES.glob("*.mp4")))
+                video_examples = media_examples(sorted(EXAMPLES.glob("*.mp4")))
                 with gr.Row(elem_classes="pose-panels"):
                     with gr.Column(min_width=0, elem_classes="pose-pane"):
                         gr.HTML("<h2>Original video</h2>", apply_default_css=False)
@@ -155,22 +157,27 @@ def build_demo():
                     with gr.Column(min_width=0, elem_classes="pose-pane"):
                         gr.HTML("<h2>Estimated poses</h2>", apply_default_css=False)
                         output_video = gr.Video(
-                            value=previews / "basketball.mp4", label="Estimated poses",
+                            label="Estimated poses",
                             format="mp4", interactive=False, buttons=["download"],
                             elem_id="video-result", **panel,
                         )
-                video_status = gr.Markdown(elem_classes="pose-status")
-        with gr.Accordion("Inference settings", open=False, elem_id="pose-settings"):
-            with gr.Row():
-                person = gr.Slider(.05, .95, value=.30, step=.01, label="Person confidence")
-                joint = gr.Slider(.05, .95, value=.30, step=.01, label="Joint confidence")
-                resolution = gr.Dropdown([640, 960, 1280], value=960, label="Video output long side (px)")
-            with gr.Row():
-                boxes = gr.Checkbox(label="Show person boxes", scale=0, min_width=160)
-                flip = gr.Checkbox(label="Use flip inference", scale=0, min_width=160)
+        with gr.Column(min_width=0, elem_id="pose-controls"):
+            image_controls = media_controls("image")
+            video_controls = media_controls("video")
+            with gr.Accordion("Inference Settings", open=True, elem_id="pose-settings"):
+                with gr.Row():
+                    person = gr.Slider(.05, .95, value=.30, step=.01, label="Person confidence")
+                    joint = gr.Slider(.05, .95, value=.30, step=.01, label="Joint confidence")
+                    resolution = gr.Dropdown(
+                        [640, 960, 1280], value=960, label="Video output long side (px)",
+                        elem_id="video-resolution",
+                    )
+                with gr.Row():
+                    boxes = gr.Checkbox(label="Show person boxes", scale=0, min_width=160)
+                    flip = gr.Checkbox(label="Use flip inference", scale=0, min_width=160)
         options = [person, joint, boxes, flip]
-        connect_media(estimate_image, image_toolbar, input_image, options, output_image, image_status)
-        connect_media(estimate_video, video_toolbar, input_video, [*options, resolution], output_video, video_status)
+        connect_media(estimate_image, input_image, options, output_image, image_controls, image_examples)
+        connect_media(estimate_video, input_video, [*options, resolution], output_video, video_controls, video_examples)
     return demo.queue(default_concurrency_limit=1)
 
 
