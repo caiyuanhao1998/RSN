@@ -1261,7 +1261,9 @@ def train_stage(argv):
                 virtual = (seen_images + ema_age_offset)/args.ema_reference_batch
                 decay = min(args.ema_decay, (1+virtual)/(10+virtual)) ** (settings['effective_batch']/args.ema_reference_batch)
                 update_ema(ema_state, decay)
-            if updates <= 2 or updates % 20 == 0 or iteration+1 == micro_limit or args.probe:
+            if (args.probe and updates >= args.probe_updates) or (args.max_updates and updates >= args.max_updates):
+                stop = True
+            if stop or updates <= 2 or updates % 20 == 0 or iteration+1 == micro_limit or args.probe:
                 elapsed = time.perf_counter()-start
                 row = dict(epoch=epoch+1, update=updates, seen_images=seen_images,
                            microbatch=iteration+1, loss=losses/(iteration+1),
@@ -1281,8 +1283,7 @@ def train_stage(argv):
                     print(json.dumps(row), flush=True)
                     with (args.output/'train.jsonl').open('a') as output:
                         output.write(json.dumps(row)+'\n')
-            if (args.probe and updates >= args.probe_updates) or (args.max_updates and updates >= args.max_updates):
-                stop = True
+            if stop:
                 break
         counts = source_counts.to(device)
         if world > 1:
