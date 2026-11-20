@@ -1,6 +1,6 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.13.0+cpu
-gradio==5.50.0
+gradio==6.16.0
 huggingface_hub==0.36.0
 imageio-ffmpeg==0.6.0
 numpy==2.4.6
