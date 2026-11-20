@@ -144,7 +144,7 @@ python scripts/audit_requirements.py requirements-lock.txt > "$TMPDIR/rsn-audit.
 python -m pip_audit --strict --no-deps --disable-pip -r "$TMPDIR/rsn-audit.txt"
 ```
 
-The audit helper preserves every package and removes only PyTorch/torchvision CUDA build labels when looking up upstream vulnerability records. It never modifies the installable lock file. A prepared workflow template is available at `.github/workflow-templates/dependency-security.yml.example`. To enable automatic audits, copy it to `.github/workflows/dependency-security.yml` using a GitHub authorization that permits workflow changes. The current OAuth authorization lacks the `workflow` scope, so automatic Actions auditing is not enabled by this update; the local strict audit completed successfully.
+The audit helper preserves every package and removes only PyTorch/torchvision CUDA build labels when looking up upstream vulnerability records. It never modifies the installable lock file. The strict local audit completed successfully.
 
 New security-upgrade logs and reports are under `/data/cyh23/rsn-repro/security-upgrade/`. Earlier short-training checkpoints remain usable with the upgraded checkpoint loader.
 
