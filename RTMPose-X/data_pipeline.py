@@ -40,7 +40,7 @@ def prepare_records(image_root='/mnt/realccvl15/ycai51/RSN-data/COCO/images', ta
     images = {}
     for split in ('train2014', 'val2014', 'train2017', 'val2017'):
         for p in (image_root / split).glob('*.jpg'):
-            images[int(p.stem.rsplit('_', 1)[1])] = str(p)
+            images[int(p.stem.rsplit('_', 1)[-1])] = str(p)
     (target / 'image_index.json').write_text(json.dumps(images))
     splits = {}
     for split in ['train', 'val']:

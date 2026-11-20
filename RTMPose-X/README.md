@@ -42,7 +42,7 @@ Run the Python snippet from `RTMPose-X` or add that directory to `PYTHONPATH`.
 
 ## Training
 
-Use the [training command and data instructions](TRAINING.md) for COCO and MPII.
+Follow [Training in the main README](../README.md#4-training) for COCO and MPII.
 
 ## Evaluation
 

@@ -73,11 +73,11 @@ The experiment folders `Res18.coco`, `RSN18.coco`, `4XRSN18.coco`, and `RSN18.mp
 Run the real COCO training entrypoint and resume it:
 
 ```bash
-cd /home/ycai51/RSN/RSN18.coco
-CUDA_VISIBLE_DEVICES=7 OMP_NUM_THREADS=4 python train.py \
+cd /home/ycai51/RSN
+CUDA_VISIBLE_DEVICES=7 OMP_NUM_THREADS=4 python RSN18.coco/train.py \
   --max-iters 40 --batch-size 32 --num-workers 4 \
   --output-dir /data/cyh23/rsn-repro/runs/RSN18.coco
-CUDA_VISIBLE_DEVICES=7 OMP_NUM_THREADS=4 python train.py \
+CUDA_VISIBLE_DEVICES=7 OMP_NUM_THREADS=4 python RSN18.coco/train.py \
   --max-iters 45 --batch-size 32 --num-workers 4 \
   --output-dir /data/cyh23/rsn-repro/runs/RSN18.coco \
   -c /data/cyh23/rsn-repro/runs/RSN18.coco/iter-40.pth

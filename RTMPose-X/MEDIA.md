@@ -16,6 +16,10 @@ DVIDS lists the following U.S. military footage as public domain. [DVIDS copyrig
 - Volleyball by Jun Seo Lee, U.S. Army. [KATUSA Friendship Week Volleyball & Ssireum Competition (B-Roll)](https://www.dvidshub.net/video/967191/katusa-friendship-week-volleyball-ssireum-competition-b-roll)
 - Soccer by Derika Upshaw, U.S. Army. [U.S. Armed Forces Army vs. Air Force Soccer Tournament](https://www.dvidshub.net/video/972336/us-armed-forces-army-vs-air-force-soccer-tournament)
 
+## README gallery
+
+The nine paired animations use the same sports clips shown on the project page. [Project page footage credits](https://github.com/caiyuanhao1998/RSN-Project#media-credits)
+
 ## Online demo videos
 
 The online demo uses short, continuous excerpts for CPU inference. The thumbnail is taken from the same excerpt.
