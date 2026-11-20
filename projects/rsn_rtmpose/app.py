@@ -177,8 +177,7 @@ def build_demo():
 demo = build_demo()
 
 if __name__ == "__main__":
-    theme = gr.themes.Base(primary_hue="zinc", secondary_hue="zinc", neutral_hue="zinc",
-                           font=["Arial", "Helvetica", "sans-serif"]).set(
+    theme = gr.themes.Base(primary_hue="zinc", secondary_hue="zinc", neutral_hue="zinc").set(
         body_background_fill="white", body_text_color_subdued="#626267",
         body_text_color_subdued_dark="#bdbdc2",
         button_primary_background_fill="#262626", button_primary_background_fill_hover="#111111",

@@ -2,6 +2,8 @@
     width: 100% !important;
     max-width: 1536px !important;
     margin-inline: auto;
+    --font: Arial, Helvetica, sans-serif;
+    font-family: var(--font);
     --pose-line: var(--border-color-primary);
     --pose-muted: var(--body-text-color-subdued);
 }
