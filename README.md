@@ -18,7 +18,7 @@ The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals a
 
 | Basketball | Volleyball | Soccer |
 | :---: | :---: | :---: |
-| <img src="projects/rsn_rtmpose/assets/basketball.gif" alt="Multi-person pose overlays on basketball" width="280"> | <img src="projects/rsn_rtmpose/assets/volleyball.gif" alt="Multi-person pose overlays on volleyball" width="280"> | <img src="projects/rsn_rtmpose/assets/soccer.gif" alt="Multi-person pose overlays on soccer" width="280"> |
+| <img src="projects/rsn_rtmpose/assets/basketball.gif" alt="Multi-person pose overlays on basketball" width="280"> | <img src="projects/rsn_rtmpose/assets/volleyball.gif?v=ae454320d1ae" alt="Multi-person pose overlays on volleyball" width="280"> | <img src="projects/rsn_rtmpose/assets/soccer.gif" alt="Multi-person pose overlays on soccer" width="280"> |
 
 [Inference and benchmarks](projects/rsn_rtmpose) · [MP4 downloads and footage credits](projects/rsn_rtmpose/MEDIA.md)
 
