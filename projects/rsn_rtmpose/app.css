@@ -1,0 +1,131 @@
+.gradio-container {
+    width: 100% !important;
+    max-width: 1536px !important;
+    margin-inline: auto;
+    --pose-line: var(--border-color-primary);
+    --pose-muted: var(--body-text-color-subdued);
+}
+.gradio-container > .main {
+    width: 100%;
+    max-width: none !important;
+    padding: 24px clamp(14px, 3vw, 46px) 28px !important;
+}
+#pose-header .html-container, .pose-pane .html-container, .pose-samples-label .html-container {
+    padding: 0;
+}
+#pose-heading h1 {
+    margin: 0;
+    color: var(--body-text-color);
+    font-size: clamp(23px, 2.1vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -.035em;
+    font-weight: 700;
+}
+.pose-meta, .pose-meta nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+.pose-meta { gap: 6px 16px; margin-top: 7px; }
+.pose-meta p { margin: 0; color: var(--pose-muted); font-size: 13px; }
+.pose-meta nav { gap: 14px; border-inline-start: 1px solid var(--pose-line); padding-inline-start: 16px; }
+.pose-meta a { color: var(--body-text-color); font-size: 12px; text-decoration: none; }
+.pose-meta a:hover, .pose-meta a:focus-visible { text-decoration: underline; }
+
+#pose-tabs { margin-top: 6px; }
+#pose-tabs .tab-wrapper { padding-bottom: 0; margin-bottom: 0; }
+#pose-tabs .tab-container { gap: 18px; }
+#pose-tabs [role="tab"] {
+    margin: 0;
+    padding: 8px 1px;
+    border: 0;
+    border-radius: 0;
+    color: var(--pose-muted);
+    background: transparent;
+    font-size: 14px;
+}
+#pose-tabs [role="tab"][aria-selected="true"] {
+    color: var(--body-text-color);
+    box-shadow: inset 0 -2px currentColor;
+    font-weight: 600;
+}
+#pose-tabs [role="tabpanel"] { padding: 14px 0 0; border: 0; }
+#pose-tabs .pose-toolbar, #pose-tabs .pose-samples, #pose-tabs .pose-actions {
+    align-items: center;
+    min-width: 0;
+}
+#pose-tabs .pose-toolbar { justify-content: space-between; gap: 10px 24px; }
+#pose-tabs .pose-samples, #pose-tabs .pose-actions { gap: 6px; width: auto; flex: 0 1 auto; }
+#pose-tabs .pose-samples-label { width: auto; flex: 0 0 auto; margin-right: 4px; color: var(--pose-muted); font-size: 12px; }
+#pose-tabs .pose-toolbar button { flex: 0 0 auto; min-width: max-content !important; white-space: nowrap; border-radius: 6px; box-shadow: none; font-size: 13px; }
+.pose-toolbar .pose-example, .pose-toolbar .pose-upload {
+    border: 1px solid var(--pose-line);
+    background: var(--block-background-fill);
+    color: var(--body-text-color);
+}
+.pose-toolbar .pose-example:hover, .pose-toolbar .pose-upload:hover { background: var(--background-fill-secondary); }
+.pose-toolbar .pose-example { gap: 7px; padding: 4px 9px 4px 4px; min-height: 36px; font-weight: 400; }
+.pose-example img { flex: none; margin: 0; padding: 0; width: 38px; height: 26px; border-radius: 3px; object-fit: cover; }
+.pose-toolbar .pose-upload, .pose-toolbar .pose-run { min-height: 38px; padding: 7px 15px; }
+.pose-toolbar button:focus-visible, #pose-heading a:focus-visible {
+    outline: 2px solid var(--body-text-color);
+    outline-offset: 2px;
+}
+
+#pose-tabs .pose-panels { gap: 18px; margin-top: 5px; }
+#pose-tabs .pose-pane { gap: 7px; container-type: inline-size; }
+.pose-pane h2 { margin: 0; color: var(--body-text-color); font-size: 14px; font-weight: 600; line-height: 20px; }
+.pose-media {
+    --pose-media-height: 56.25cqw;
+    border: 1px solid var(--pose-line) !important;
+    border-radius: 7px !important;
+    overflow: hidden;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+#image-source .source-selection, #video-source .source-selection {
+    position: absolute;
+    inset: 6px auto auto 6px;
+    z-index: 2;
+    width: auto;
+    height: 27px;
+    padding: 1px 4px;
+    border: 1px solid var(--pose-line);
+    border-radius: 4px;
+    background: var(--block-background-fill);
+}
+#image-source .upload-container {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100%;
+}
+.pose-status { color: var(--pose-muted); font-size: 13px; }
+.pose-status:empty, .pose-status:not(:has(p)) { display: none; }
+#pose-settings {
+    padding: 0;
+    border: 1px solid var(--pose-line);
+    border-radius: 7px;
+    background: var(--background-fill-secondary);
+    box-shadow: none;
+}
+#pose-settings > button { padding: 10px 13px; font-size: 13px; font-weight: 600; }
+#pose-settings > div:last-child > .column { padding: 0 12px 12px; }
+#pose-settings .form { box-shadow: none; }
+
+@media (max-width: 760px) {
+    .gradio-container > .main { padding: 16px 14px 24px !important; }
+    #pose-tabs .pose-toolbar { row-gap: 10px; }
+    #pose-tabs .pose-panels { gap: 14px; }
+}
+@media (max-width: 640px) {
+    .pose-meta { flex-direction: column; }
+    .pose-meta nav { border: 0; padding: 0; }
+    #pose-tabs .pose-samples { width: 100%; gap: 4px 6px; }
+    #pose-tabs .pose-samples > .pose-samples-label { flex-basis: 100%; margin: 0; }
+    #pose-tabs .pose-actions { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #pose-tabs .pose-toolbar .pose-actions > button { width: 100% !important; min-width: 0 !important; }
+    #pose-tabs .pose-panels { flex-direction: column; }
+    #pose-tabs .pose-pane { width: 100%; flex: none; }
+    #pose-tabs .pose-toolbar .pose-example { gap: 4px; padding-right: 6px; font-size: 12px; }
+    .pose-example img { width: 29px; height: 23px; }
+}

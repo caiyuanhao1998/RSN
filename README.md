@@ -28,7 +28,7 @@ The released model reaches **79.124422 AP** on COCO val2017 with H56 proposals a
 
 #### News
 
-- **2026.11.20** · We released **RSN + RTMPose-X** with 79.124422 AP on COCO val2017, a single training entry point for COCO and MPII, and image and video demos. [Weights](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Training](projects/rsn_rtmpose/TRAINING.md) · [Demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/)
+- **2026.11.20** · We released **RSN + RTMPose-X** with 79.124422 AP on COCO val2017, a single training entry point for COCO and MPII, and an online demo with side-by-side input and pose predictions for both images and videos. [Weights](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Training](projects/rsn_rtmpose/TRAINING.md) · [Demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/)
 - **2026.11.20** · We upgraded the demo to Gradio 6.16.0 for the reported dependency fixes. Rendered videos now use the app's managed cache so they can be cleaned up automatically. [Dependabot update](https://github.com/caiyuanhao1998/RSN/pull/38)
 - **2026.11.20** · MPII evaluation now prints plain numeric PCKh scores with NumPy 2. [Runtime fixes](LOCAL_SETUP.md#fixes)
 - **2026.11.17** · We updated the PyTorch and CUDA dependencies, restricted checkpoint loading to weights, and fixed distributed training, checkpoint resume, and COCO and MPII evaluation edge cases. [Runtime fixes](LOCAL_SETUP.md#fixes) · [Dependency update](https://github.com/caiyuanhao1998/RSN/pull/37)

@@ -1,5 +1,5 @@
 """Gradio interface for RSN + RTMPose-X image and video inference."""
-from functools import lru_cache
+from functools import lru_cache, partial
 import os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -17,22 +17,6 @@ CODE = "https://github.com/caiyuanhao1998/RSN"
 WEIGHTS = "https://huggingface.co/CaiYuanhao/RSN-RTMPose-X"
 SITE = "https://caiyuanhao1998.github.io/RSN-Project/"
 PAPER = "https://arxiv.org/abs/2003.04030"
-
-CSS = """
-.gradio-container {max-width: 1360px !important; margin: 0 auto !important;}
-#pose-heading {margin: 6px 0 16px; padding: 26px 30px; border-radius: 16px;
-  background: #0d202c; color: #d9edf2; border: 1px solid #284653;}
-#pose-heading h1 {margin: 0 0 8px; color: #f7fcff; font-size: clamp(26px, 4vw, 40px);
-  letter-spacing: -.035em; line-height: 1.12;}
-#pose-heading p {margin: 0 0 14px; line-height: 1.55;}
-#pose-heading nav {display: flex; flex-wrap: wrap; gap: 7px 18px;}
-#pose-heading a {color: #82eadb; font-weight: 600; text-decoration: none;}
-#pose-heading a:hover, #pose-heading a:focus-visible {text-decoration: underline;}
-#pose-controls {border-radius: 12px; padding: 12px; background: var(--background-fill-secondary);}
-#pose-controls h2 {margin-top: 0; font-size: 1rem;}
-.pose-status {min-height: 1.5rem; margin-top: 4px;}
-@media (max-width: 700px) {#pose-heading {padding: 20px; margin-bottom: 8px;}}
-"""
 
 
 @lru_cache(maxsize=1)
@@ -81,54 +65,125 @@ def estimate_video(video, person_score, joint_score, show_boxes, flip, max_side,
     return str(output), f"{stats['frames']} frames processed. Peak detections per frame {stats['max_people']}."
 
 
+def media_toolbar(kind, sources):
+    examples = []
+    with gr.Row(elem_classes="pose-toolbar"):
+        with gr.Row(elem_classes="pose-samples"):
+            gr.HTML('<span>Examples</span>', apply_default_css=False, elem_classes="pose-samples-label")
+            for path in sources:
+                thumbnail = path.with_suffix(".jpg")
+                button = gr.Button(
+                    path.stem.title(), icon=thumbnail if thumbnail.is_file() else None,
+                    size="sm", scale=0, min_width=0, elem_classes="pose-example",
+                )
+                examples.append((button, path))
+        with gr.Row(elem_classes="pose-actions"):
+            upload = gr.UploadButton(
+                f"Upload {kind}", file_types=[kind], size="md", scale=0, min_width=0,
+                elem_classes="pose-upload",
+            )
+            run = gr.Button("Estimate poses", variant="primary", size="md", scale=0,
+                            min_width=0, elem_classes="pose-run")
+    return upload, run, examples
+
+
+def set_source(path):
+    return str(path), None, ""
+
+
+def clear_result():
+    return None, ""
+
+
+def connect_media(fn, toolbar, source, settings, result, status):
+    upload, run, examples = toolbar
+    inputs = [source, *settings]
+    outputs = [result, status]
+    immediate = dict(queue=False, show_progress="hidden", api_visibility="private")
+    upload.upload(set_source, upload, [source, *outputs], **immediate)
+    gr.on([source.input, source.clear], clear_result, outputs=outputs, **immediate)
+    run.click(fn, inputs, outputs, api_name=fn.__name__, concurrency_id="pose")
+    for button, path in examples:
+        selected = button.click(partial(set_source, path), outputs=[source, *outputs], **immediate)
+        selected.success(fn, inputs, outputs, api_visibility="private", concurrency_id="pose")
+
+
 def build_demo():
-    with gr.Blocks(title="RSN + RTMPose-X", delete_cache=(3600, 86400)) as demo:
+    previews = EXAMPLES / "previews"
+    panel = dict(show_label=False, min_width=0, height="var(--pose-media-height)",
+                 elem_classes="pose-media")
+    with gr.Blocks(title="RSN + RTMPose-X", fill_width=True, delete_cache=(3600, 86400)) as demo:
         gr.HTML(
-            '<header id="pose-heading"><h1>RSN + RTMPose-X</h1>'
-            '<p>Multi-person pose estimation for images and video.</p>'
-            f'<nav aria-label="Project links"><a href="{PAPER}">RSN paper</a>'
-            f'<a href="{CODE}">GitHub</a><a href="{WEIGHTS}">Weights</a>'
-            f'<a href="{SITE}">Project page</a></nav></header>'
+            '<header id="pose-heading"><h1>RSN + RTMPose-X</h1><div class="pose-meta">'
+            '<p>Multi-person pose estimation</p><nav aria-label="Project resources">'
+            f'<a href="{SITE}" target="_blank" rel="noopener">Project page</a>'
+            f'<a href="{PAPER}" target="_blank" rel="noopener">Paper</a>'
+            f'<a href="{CODE}" target="_blank" rel="noopener">GitHub</a>'
+            f'<a href="{WEIGHTS}" target="_blank" rel="noopener">Weights</a></nav></div></header>',
+            apply_default_css=False, elem_id="pose-header",
         )
-        with gr.Row():
-            with gr.Column(scale=1, min_width=218, elem_id="pose-controls"):
-                gr.Markdown("## Settings")
+        with gr.Tabs(elem_id="pose-tabs"):
+            with gr.Tab("Image", elem_id="image-tab"):
+                image_toolbar = media_toolbar("image", sorted(EXAMPLES.glob("*.jpg")))
+                with gr.Row(elem_classes="pose-panels"):
+                    with gr.Column(min_width=0, elem_classes="pose-pane"):
+                        gr.HTML("<h2>Original image</h2>", apply_default_css=False)
+                        input_image = gr.Image(
+                            value=str(EXAMPLES / "basketball.jpg"), label="Original image",
+                            type="numpy", image_mode="RGB", interactive=True,
+                            sources=["upload", "clipboard", "webcam"], buttons=["fullscreen"],
+                            elem_id="image-source", **panel,
+                        )
+                    with gr.Column(min_width=0, elem_classes="pose-pane"):
+                        gr.HTML("<h2>Estimated poses</h2>", apply_default_css=False)
+                        output_image = gr.Image(
+                            value=str(previews / "basketball.jpg"), label="Estimated poses",
+                            interactive=False, buttons=["fullscreen", "download"],
+                            elem_id="image-result", **panel,
+                        )
+                image_status = gr.Markdown(elem_classes="pose-status")
+            with gr.Tab("Video", elem_id="video-tab"):
+                video_toolbar = media_toolbar("video", sorted(EXAMPLES.glob("*.mp4")))
+                with gr.Row(elem_classes="pose-panels"):
+                    with gr.Column(min_width=0, elem_classes="pose-pane"):
+                        gr.HTML("<h2>Original video</h2>", apply_default_css=False)
+                        input_video = gr.Video(
+                            value=EXAMPLES / "basketball.mp4", label="Original video",
+                            sources=["upload", "webcam"], interactive=True,
+                            elem_id="video-source", **panel,
+                        )
+                    with gr.Column(min_width=0, elem_classes="pose-pane"):
+                        gr.HTML("<h2>Estimated poses</h2>", apply_default_css=False)
+                        output_video = gr.Video(
+                            value=previews / "basketball.mp4", label="Estimated poses",
+                            format="mp4", interactive=False, buttons=["download"],
+                            elem_id="video-result", **panel,
+                        )
+                video_status = gr.Markdown(elem_classes="pose-status")
+        with gr.Accordion("Inference settings", open=False, elem_id="pose-settings"):
+            with gr.Row():
                 person = gr.Slider(.05, .95, value=.30, step=.01, label="Person confidence")
                 joint = gr.Slider(.05, .95, value=.30, step=.01, label="Joint confidence")
-                with gr.Accordion("More options", open=False):
-                    boxes = gr.Checkbox(label="Show person boxes")
-                    flip = gr.Checkbox(label="Use flip inference", info="Runs a second pose forward pass")
-                    resolution = gr.Dropdown([640, 960, 1280], value=960, label="Video output long side (px)")
-            with gr.Column(scale=4, min_width=300):
-                with gr.Tabs():
-                    with gr.Tab("Image"):
-                        with gr.Row():
-                            input_image = gr.Image(label="Input", type="numpy", image_mode="RGB",
-                                                   sources=["upload", "clipboard", "webcam"], height=360)
-                            output_image = gr.Image(label="Poses", interactive=False, height=360)
-                        run_image = gr.Button("Estimate image poses", variant="primary")
-                        image_status = gr.Markdown(elem_classes=["pose-status"])
-                        examples = [[str(file)] for file in sorted(EXAMPLES.glob("*.jpg"))]
-                        if examples:
-                            gr.Examples(examples, inputs=[input_image], cache_examples=False)
-                    with gr.Tab("Video"):
-                        with gr.Row():
-                            input_video = gr.Video(label="Input", sources=["upload", "webcam"], height=360)
-                            output_video = gr.Video(label="Poses", format="mp4", interactive=False, height=360)
-                        run_video = gr.Button("Estimate video poses", variant="primary")
-                        video_status = gr.Markdown(elem_classes=["pose-status"])
-                        examples = [[str(file)] for file in sorted(EXAMPLES.glob("*.mp4"))]
-                        if examples:
-                            gr.Examples(examples, inputs=[input_video], cache_examples=False)
-        run_image.click(estimate_image, inputs=[input_image, person, joint, boxes, flip],
-                        outputs=[output_image, image_status], api_name="estimate_image", concurrency_id="pose")
-        run_video.click(estimate_video, inputs=[input_video, person, joint, boxes, flip, resolution],
-                        outputs=[output_video, video_status], api_name="estimate_video", concurrency_id="pose")
+                resolution = gr.Dropdown([640, 960, 1280], value=960, label="Video output long side (px)")
+            with gr.Row():
+                boxes = gr.Checkbox(label="Show person boxes", scale=0, min_width=160)
+                flip = gr.Checkbox(label="Use flip inference", scale=0, min_width=160)
+        options = [person, joint, boxes, flip]
+        connect_media(estimate_image, image_toolbar, input_image, options, output_image, image_status)
+        connect_media(estimate_video, video_toolbar, input_video, [*options, resolution], output_video, video_status)
     return demo.queue(default_concurrency_limit=1)
 
 
 demo = build_demo()
 
 if __name__ == "__main__":
-    theme = gr.themes.Soft(primary_hue=gr.themes.colors.teal, neutral_hue=gr.themes.colors.slate)
-    demo.launch(theme=theme, css=CSS)
+    theme = gr.themes.Base(primary_hue="zinc", secondary_hue="zinc", neutral_hue="zinc",
+                           font=["Arial", "Helvetica", "sans-serif"]).set(
+        body_background_fill="white", body_text_color_subdued="#626267",
+        body_text_color_subdued_dark="#bdbdc2",
+        button_primary_background_fill="#262626", button_primary_background_fill_hover="#111111",
+        button_primary_text_color="white", button_primary_border_color="#262626",
+        button_primary_background_fill_dark="#ededed", button_primary_background_fill_hover_dark="white",
+        button_primary_text_color_dark="#191919", button_primary_border_color_dark="#ededed",
+    )
+    demo.launch(theme=theme, css_paths=ROOT / "app.css", footer_links=["api", "settings"])
