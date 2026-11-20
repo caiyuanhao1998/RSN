@@ -2,7 +2,7 @@
 
 A top-down multi-person pose model with a high-resolution residual-step refiner, pooled spatial attention and proposal-conditioned confidence. It predicts 17 COCO joints from 384 × 288 person crops.
 
-[Model and checkpoint](https://huggingface.co/CaiYuanhao/RSN-RTMPose-X) · [Online demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/) · [RSN paper](https://arxiv.org/abs/2003.04030)
+[Model and checkpoint](https://huggingface.co/CaiYuanhao/RSN) · [Online demo](https://huggingface.co/spaces/CaiYuanhao/RSN-RTMPose-X) · [Project page](https://caiyuanhao1998.github.io/RSN-Project/) · [RSN paper](https://arxiv.org/abs/2003.04030)
 
 | Model | COCO val2017 AP | Pose network latency |
 | --- | ---: | ---: |

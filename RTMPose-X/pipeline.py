@@ -18,7 +18,7 @@ from data_pipeline import (FLIP, HEIGHT, WIDTH, affine_matrix, decode_batch, fix
                            merge_simcc_flip, oks_overlap, preprocess)
 from evaluate import fuse_model, load_model
 
-MODEL_REPO = 'CaiYuanhao/RSN-RTMPose-X'
+MODEL_REPO = 'CaiYuanhao/RSN'
 MODEL_FILE = 'rsn-rtmpose-x.pth'
 MODEL_SHA256 = '942d0be0bf9779c2bbef88d2a91cccb6ba6e122ec5bd7c12b81ff26ce958de04'
 DETECTOR_URL = 'https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_s.onnx'
@@ -64,9 +64,13 @@ def download_detector():
 
 
 def download_pose():
-    from huggingface_hub import hf_hub_download
+    from huggingface_hub import snapshot_download
 
-    path = Path(hf_hub_download(repo_id=MODEL_REPO, filename=MODEL_FILE))
+    snapshot = Path(snapshot_download(repo_id=MODEL_REPO, allow_patterns=['config.json', MODEL_FILE]))
+    manifest = json.loads((snapshot / 'config.json').read_text(encoding='utf-8'))
+    if MODEL_FILE not in manifest['checkpoint_files'] or manifest['checkpoint_sha256'] != MODEL_SHA256:
+        raise ValueError('The Hub manifest does not match the RSN release checkpoint.')
+    path = snapshot / MODEL_FILE
     if file_sha256(path) != MODEL_SHA256:
         raise ValueError('The Hub checkpoint did not match the RSN release checksum.')
     return path

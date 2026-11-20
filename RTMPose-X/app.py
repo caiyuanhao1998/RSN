@@ -9,12 +9,12 @@ import gradio as gr
 from gradio.utils import get_upload_folder
 import torch
 
-from pipeline import PosePipeline, draw_poses, process_video
+from pipeline import MODEL_REPO, PosePipeline, draw_poses, process_video
 
 ROOT = Path(__file__).resolve().parent
 EXAMPLES = ROOT / "examples"
 CODE = "https://github.com/caiyuanhao1998/RSN"
-WEIGHTS = "https://huggingface.co/CaiYuanhao/RSN-RTMPose-X"
+WEIGHTS = f"https://huggingface.co/{MODEL_REPO}"
 SITE = "https://caiyuanhao1998.github.io/RSN-Project/"
 PAPER = "https://arxiv.org/abs/2003.04030"
 
