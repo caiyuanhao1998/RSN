@@ -185,7 +185,7 @@ def build_demo():
         with gr.Column(min_width=0, elem_id="pose-controls"):
             image_controls = media_controls("image")
             video_controls = media_controls("video")
-            with gr.Accordion("Inference Settings", open=True, elem_id="pose-settings"):
+            with gr.Accordion("Inference Settings", open=False, elem_id="pose-settings"):
                 with gr.Row():
                     person = gr.Slider(.05, .95, value=.30, step=.01, label="Person confidence")
                     joint = gr.Slider(.05, .95, value=.30, step=.01, label="Joint confidence")
@@ -217,6 +217,6 @@ if __name__ == "__main__":
     demo.launch(
         theme=theme,
         css_paths=ROOT / "app.css",
-        footer_links=["api", "settings"],
+        footer_links=[],
         blocked_paths=[str(USAGE_DIR)],
     )
