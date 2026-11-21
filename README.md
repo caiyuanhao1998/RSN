@@ -13,20 +13,20 @@
 </p>
 
 
-<p align="center">
+<h6 align="center">
   <img
-    src="figures/gallery/tennis-serve-pose.gif" alt="Tennis Serve — RSN pose overlay" width="31.4%">&emsp13;&hairsp;<img
-    src="figures/gallery/golf-swing-pose.gif" alt="Golf Swing — RSN pose overlay" width="31.4%">&emsp13;&hairsp;<img
-    src="figures/gallery/kettlebell-pose.gif" alt="Kettlebell Swing — RSN pose overlay" width="31.4%"><br>
+    src="figures/gallery/tennis-serve-pose.gif" alt="Tennis Serve — RSN pose overlay" width="32.2%">&thinsp;&hairsp;<img
+    src="figures/gallery/golf-swing-pose.gif" alt="Golf Swing — RSN pose overlay" width="32.2%">&thinsp;&hairsp;<img
+    src="figures/gallery/kettlebell-pose.gif" alt="Kettlebell Swing — RSN pose overlay" width="32.2%"><br>
   <img
-    src="figures/gallery/basketball-pose.gif" alt="Basketball — RSN pose overlay" width="31.4%">&emsp13;&hairsp;<img
-    src="figures/gallery/volleyball-pose.gif" alt="Volleyball — RSN pose overlay" width="31.4%">&emsp13;&hairsp;<img
-    src="figures/gallery/soccer-pose.gif" alt="Soccer — RSN pose overlay" width="31.4%"><br>
+    src="figures/gallery/basketball-pose.gif" alt="Basketball — RSN pose overlay" width="32.2%">&thinsp;&hairsp;<img
+    src="figures/gallery/volleyball-pose.gif" alt="Volleyball — RSN pose overlay" width="32.2%">&thinsp;&hairsp;<img
+    src="figures/gallery/soccer-pose.gif" alt="Soccer — RSN pose overlay" width="32.2%"><br>
   <img
-    src="figures/gallery/pickleball-pose.gif" alt="Pickleball Doubles — RSN pose overlay" width="31.4%">&emsp13;&hairsp;<img
-    src="figures/gallery/flag-football-pose.gif" alt="Flag Football — RSN pose overlay" width="31.4%">&emsp13;&hairsp;<img
-    src="figures/gallery/track-racing-pose.gif" alt="Track Racing — RSN pose overlay" width="31.4%">
-</p>
+    src="figures/gallery/pickleball-pose.gif" alt="Pickleball Doubles — RSN pose overlay" width="32.2%">&thinsp;&hairsp;<img
+    src="figures/gallery/flag-football-pose.gif" alt="Flag Football — RSN pose overlay" width="32.2%">&thinsp;&hairsp;<img
+    src="figures/gallery/track-racing-pose.gif" alt="Track Racing — RSN pose overlay" width="32.2%">
+</h6>
 
 ### News
 
