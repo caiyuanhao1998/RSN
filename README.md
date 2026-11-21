@@ -14,30 +14,19 @@
 
 
 <p align="center">
-  <img width="16.66%"
-    src="figures/gallery/tennis-serve-input.gif" alt="Tennis Serve — original footage"><img width="16.66%"
-    src="figures/gallery/tennis-serve-pose.gif" alt="Tennis Serve — RSN pose overlay"><img width="16.66%"
-    src="figures/gallery/golf-swing-input.gif" alt="Golf Swing — original footage"><img width="16.66%"
-    src="figures/gallery/golf-swing-pose.gif" alt="Golf Swing — RSN pose overlay"><img width="16.66%"
-    src="figures/gallery/kettlebell-input.gif" alt="Kettlebell Swing — original footage"><img width="16.66%"
-    src="figures/gallery/kettlebell-pose.gif" alt="Kettlebell Swing — RSN pose overlay"><br>
-  <img width="16.66%"
-    src="figures/gallery/basketball-input.gif" alt="Basketball — original footage"><img width="16.66%"
-    src="figures/gallery/basketball-pose.gif" alt="Basketball — RSN pose overlay"><img width="16.66%"
-    src="figures/gallery/volleyball-input.gif" alt="Volleyball — original footage"><img width="16.66%"
-    src="figures/gallery/volleyball-pose.gif" alt="Volleyball — RSN pose overlay"><img width="16.66%"
-    src="figures/gallery/soccer-input.gif" alt="Soccer — original footage"><img width="16.66%"
-    src="figures/gallery/soccer-pose.gif" alt="Soccer — RSN pose overlay"><br>
-  <img width="16.66%"
-    src="figures/gallery/pickleball-input.gif" alt="Pickleball Doubles — original footage"><img width="16.66%"
-    src="figures/gallery/pickleball-pose.gif" alt="Pickleball Doubles — RSN pose overlay"><img width="16.66%"
-    src="figures/gallery/flag-football-input.gif" alt="Flag Football — original footage"><img width="16.66%"
-    src="figures/gallery/flag-football-pose.gif" alt="Flag Football — RSN pose overlay"><img width="16.66%"
-    src="figures/gallery/track-racing-input.gif" alt="Track Racing — original footage"><img width="16.66%"
-    src="figures/gallery/track-racing-pose.gif" alt="Track Racing — RSN pose overlay">
+  <img
+    src="figures/gallery/tennis-serve-pose.gif" alt="Tennis Serve — RSN pose overlay" width="32.4%">&thinsp;<img
+    src="figures/gallery/golf-swing-pose.gif" alt="Golf Swing — RSN pose overlay" width="32.4%">&thinsp;<img
+    src="figures/gallery/kettlebell-pose.gif" alt="Kettlebell Swing — RSN pose overlay" width="32.4%"><br>
+  <img
+    src="figures/gallery/basketball-pose.gif" alt="Basketball — RSN pose overlay" width="32.4%">&thinsp;<img
+    src="figures/gallery/volleyball-pose.gif" alt="Volleyball — RSN pose overlay" width="32.4%">&thinsp;<img
+    src="figures/gallery/soccer-pose.gif" alt="Soccer — RSN pose overlay" width="32.4%"><br>
+  <img
+    src="figures/gallery/pickleball-pose.gif" alt="Pickleball Doubles — RSN pose overlay" width="32.4%">&thinsp;<img
+    src="figures/gallery/flag-football-pose.gif" alt="Flag Football — RSN pose overlay" width="32.4%">&thinsp;<img
+    src="figures/gallery/track-racing-pose.gif" alt="Track Racing — RSN pose overlay" width="32.4%">
 </p>
-
-<p align="center"><sub>Each pair shows the original footage on the left and the RSN pose overlay on the right.</sub></p>
 
 ### News
 

@@ -18,7 +18,7 @@ DVIDS lists the following U.S. military footage as public domain. [DVIDS copyrig
 
 ## README gallery
 
-The nine paired animations use the same sports clips shown on the project page. [Project page footage credits](https://github.com/caiyuanhao1998/RSN-Project#media-credits)
+The nine pose animations use the same sports clips shown on the project page. [Project page footage credits](https://github.com/caiyuanhao1998/RSN-Project#media-credits)
 
 ## Online demo videos
 
