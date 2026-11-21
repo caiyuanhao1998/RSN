@@ -22,7 +22,7 @@ The nine pose animations use the same sports clips shown on the project page. [P
 
 ## Online demo videos
 
-The online demo uses short, continuous excerpts for CPU inference. The thumbnail is taken from the same excerpt.
+The online demo uses short, continuous excerpts. The thumbnail is taken from the same excerpt.
 
 | Sport | Start in original | Duration | FPS | Source |
 | --- | ---: | ---: | ---: | --- |

@@ -1,13 +1,2 @@
-torch==2.13.0
-torchvision==0.28.0
-ninja
-yacs
-cython
-matplotlib
-tqdm
-coloredlogs
-tensorboardX
-easydict
-scipy
-opencv-python-headless
-pycocotools
+--extra-index-url https://download.pytorch.org/whl/cu126
+-r RTMPose-X/requirements-lock.txt

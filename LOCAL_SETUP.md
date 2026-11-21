@@ -25,10 +25,10 @@ This sets `RSN_HOME`, `PYTHONPATH`, the environment's executable path, and tempo
 
 On another machine, `scripts/env.sh` defaults to an environment at `.venv` and runtime files at `.runtime` within the repository. Set `RSN_ENV_DIR` and `RSN_RUNTIME_DIR` before sourcing it to choose other locations, or put those exports in an ignored `scripts/env.local.sh`. NCCL transport is unchanged unless your own configuration sets it.
 
-To reproduce the Python environment in a new destination, first create a Python 3.11 virtual environment, then use its pip:
+To reproduce the Python environment in a new destination, create and activate a Python 3.11 virtual environment.
 
 ```bash
-TMPDIR=/data/cyh23/rsn-repro/tmp python -m pip install --no-cache-dir \
+TMPDIR=/data/cyh23/rsn-repro/tmp pip install --no-cache-dir \
   --extra-index-url https://download.pytorch.org/whl/cu126 \
   -r /home/ycai51/RSN/requirements-lock.txt
 ```
@@ -139,7 +139,7 @@ The framework pair and CUDA build follow the [official installation matrix](http
 To audit the complete lock file without downloading/installing GPU wheels:
 
 ```bash
-python -m pip install pip-audit==2.10.1
+pip install pip-audit==2.10.1
 python scripts/audit_requirements.py requirements-lock.txt > "$TMPDIR/rsn-audit.txt"
 python -m pip_audit --strict --no-deps --disable-pip -r "$TMPDIR/rsn-audit.txt"
 ```

@@ -40,24 +40,16 @@
 
 ## 1. Create Environment
 
-Use Python 3.11 and the CUDA 12.6 PyTorch build for training and evaluation. Run the commands below from the repository root after cloning.
+Use one Python 3.11 environment with CUDA 12.6 PyTorch for training, evaluation, inference, and the local demo. Run the commands from the repository root.
 
 ```bash
 git clone https://github.com/caiyuanhao1998/RSN.git
 cd RSN
-conda create -n rsn python=3.11 -y
+conda create -n rsn python=3.11 pip -y
 conda activate rsn
-python -m pip install --extra-index-url https://download.pytorch.org/whl/cu126 -r RTMPose-X/requirements-lock.txt
+pip install -r requirements.txt
 export RSN_HOME="$PWD"
 export PYTHONPATH="$RSN_HOME${PYTHONPATH:+:$PYTHONPATH}"
-```
-
-For CPU inference or a local demo, use a separate environment.
-
-```bash
-conda create -n rsn-cpu python=3.11 -y
-conda activate rsn-cpu
-python -m pip install -r RTMPose-X/requirements-demo.txt
 ```
 
 ## 2. Prepare Dataset
@@ -109,14 +101,14 @@ Evaluation uses H56 person detections and flip inference and writes `metrics.jso
 
 ### Inference on images and videos
 
-The pipeline downloads the released pose checkpoint and YOLOX-S detector on first use. In the CUDA environment, add the download and video dependencies with `python -m pip install huggingface_hub==0.36.0 imageio-ffmpeg==0.6.0`. The CPU inference environment already includes them.
+The pipeline downloads the released pose checkpoint and YOLOX-S detector on first use.
 
 ```bash
-python RTMPose-X/pipeline.py input.jpg poses.jpg
-python RTMPose-X/pipeline.py input.mp4 poses.mp4
+python RTMPose-X/pipeline.py input.jpg poses.jpg --device cuda
+python RTMPose-X/pipeline.py input.mp4 poses.mp4 --device cuda
 ```
 
-Add `--device cpu` to force CPU inference. To launch the local browser demo in the demo environment, run `python RTMPose-X/app.py`.
+Launch the local browser demo with `RSN_DEVICE=cuda python RTMPose-X/app.py`.
 
 ## 4. Training
 
